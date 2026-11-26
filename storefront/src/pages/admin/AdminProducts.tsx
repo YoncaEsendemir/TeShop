@@ -88,7 +88,7 @@ export default function AdminProducts() {
                   <td className="px-4 py-3">
                     <div className="flex justify-end gap-1">
                       <Link
-                        to={`/admin/urunler/${p.slug}/duzenle`}
+                        to={`/admin/urunler/${p.id}/duzenle`}
                         className="rounded-md p-2 text-text-muted hover:bg-surface hover:text-text"
                         aria-label="Düzenle"
                       >

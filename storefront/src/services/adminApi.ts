@@ -94,8 +94,8 @@ export async function adminProducts(params: { search?: string; page?: number } =
   return data
 }
 
-export async function adminProduct(slug: string): Promise<Product> {
-  const { data } = await adminApi.get<ApiItem<Product>>(`/admin/products/${slug}`)
+export async function adminProduct(id: number): Promise<Product> {
+  const { data } = await adminApi.get<ApiItem<Product>>(`/admin/products/${id}`)
   return data.data
 }
 

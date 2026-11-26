@@ -30,7 +30,7 @@ function App() {
         <Route path="kategoriler" element={<AdminCategories />} />
         <Route path="urunler" element={<AdminProducts />} />
         <Route path="urunler/yeni" element={<AdminProductEdit />} />
-        <Route path="urunler/:slug/duzenle" element={<AdminProductEdit />} />
+        <Route path="urunler/:id/duzenle" element={<AdminProductEdit />} />
       </Route>
     </Routes>
   )

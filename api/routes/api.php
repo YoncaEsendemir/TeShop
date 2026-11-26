@@ -35,17 +35,23 @@ Route::prefix('v1')->group(function () {
             Route::get('/me', [AdminAuthController::class, 'me']);
             Route::get('/stats', [AdminDashboardController::class, 'stats']);
 
-            // Kategori + Ürün CRUD
+            // Kategori CRUD (id ile bağlanır)
             Route::apiResource('categories', AdminCategoryController::class);
-            Route::apiResource('products', AdminProductController::class);
 
-            // Varyantlar (ürüne bağlı oluştur; tekil güncelle/sil)
-            Route::post('products/{product}/variants', [AdminVariantController::class, 'store']);
+            // Ürün CRUD — admin id ile çalışır ({product:id}); public tarafta slug kullanılır
+            Route::get('products', [AdminProductController::class, 'index']);
+            Route::post('products', [AdminProductController::class, 'store']);
+            Route::get('products/{product:id}', [AdminProductController::class, 'show']);
+            Route::match(['put', 'patch'], 'products/{product:id}', [AdminProductController::class, 'update']);
+            Route::delete('products/{product:id}', [AdminProductController::class, 'destroy']);
+
+            // Varyantlar (ürüne id ile bağlı oluştur; tekil güncelle/sil)
+            Route::post('products/{product:id}/variants', [AdminVariantController::class, 'store']);
             Route::put('variants/{variant}', [AdminVariantController::class, 'update']);
             Route::delete('variants/{variant}', [AdminVariantController::class, 'destroy']);
 
-            // Görseller (ürüne yükle; tekil sil)
-            Route::post('products/{product}/images', [AdminImageController::class, 'store']);
+            // Görseller (ürüne id ile yükle; tekil sil)
+            Route::post('products/{product:id}/images', [AdminImageController::class, 'store']);
             Route::delete('images/{image}', [AdminImageController::class, 'destroy']);
         });
     });

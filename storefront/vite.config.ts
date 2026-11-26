@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
@@ -11,5 +12,10 @@ export default defineConfig({
     watch: {
       usePolling: true, // Docker + Windows'ta dosya değişikliklerini yakalamak için
     },
+  },
+  test: {
+    environment: 'jsdom', // localStorage/DOM için
+    globals: true,
+    setupFiles: ['./src/test/setup.ts'],
   },
 })

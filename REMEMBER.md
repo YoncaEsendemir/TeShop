@@ -13,7 +13,19 @@
   `docker compose exec api php artisan ...`
 
 ## 🎯 Şu an neredeyiz
-**Faz 4 — Admin panel (frontend)** ✅ BİTTİ → sırada Faz 5 (KVKK/SEO/i18n/Test)
+**Testler yazıldı (Faz 4 sonrası)** → Yonca arayüz testlerini yapacak → sonra **Faz 5**
+
+### 🧪 TESTLER (26.11.2026) — tümü GEÇTİ ✅
+- **Backend: 25 PHPUnit feature testi** (`api/tests/Feature/`): PublicApiTest, AdminAuthTest, AdminCrudTest
+  - Çalıştır: `docker compose exec api php artisan test` (sqlite :memory:)
+- **Frontend: 14 Vitest testi** (`storefront/src/.../*.test.ts`): utils + cart store
+  - Çalıştır: `docker compose exec storefront npm test`
+- **🐞 BUG BULUNDU & DÜZELTİLDİ:** Admin ürün-bağlı route'ları (`products/{product}`) slug ile
+  bağlanıyordu ama frontend id gönderiyordu → 404 (varyant ekle/görsel yükle/güncelle/sil bozuktu).
+  Düzeltme: admin ürün route'ları `{product:id}` ile bağlandı + frontend id kullanıyor. Testler teyit etti.
+- **Yonca'nın arayüz test listesi:** `ARAYUZ_TESTLERI.md` (özellikle B4 ürün yönetimini dikkatli test et)
+
+### Faz 4 — Admin panel (frontend) ✅ BİTTİ
 
 ### Faz 4'te yapılanlar (26.11.2026)
 - Backend: `Admin\DashboardController@stats` + route `GET /admin/stats` (ürün/kategori/varyant/stok sayıları)

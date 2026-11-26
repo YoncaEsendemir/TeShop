@@ -30,8 +30,9 @@ const EMPTY_PRODUCT: ProductInput = {
 const EMPTY_VARIANT: VariantInput = { sku: '', size: '', color: '', price: null, stock: 0, is_active: true }
 
 export default function AdminProductEdit() {
-  const { slug } = useParams()
-  const isEdit = !!slug
+  const { id } = useParams()
+  const productId = id ? Number(id) : null
+  const isEdit = !!productId
   const navigate = useNavigate()
   const qc = useQueryClient()
 
@@ -45,8 +46,8 @@ export default function AdminProductEdit() {
   })
 
   const { data: product } = useQuery({
-    queryKey: ['admin', 'product', slug],
-    queryFn: () => adminProduct(slug!),
+    queryKey: ['admin', 'product', productId],
+    queryFn: () => adminProduct(productId!),
     enabled: isEdit,
   })
 
@@ -65,7 +66,7 @@ export default function AdminProductEdit() {
   }, [product])
 
   function refetchProduct() {
-    qc.invalidateQueries({ queryKey: ['admin', 'product', slug] })
+    qc.invalidateQueries({ queryKey: ['admin', 'product', productId] })
     qc.invalidateQueries({ queryKey: ['admin', 'products'] })
   }
 
@@ -77,7 +78,7 @@ export default function AdminProductEdit() {
     onSuccess: (saved) => {
       setError(null)
       qc.invalidateQueries({ queryKey: ['admin', 'products'] })
-      if (!isEdit) navigate(`/admin/urunler/${saved.slug}/duzenle`)
+      if (!isEdit) navigate(`/admin/urunler/${saved.id}/duzenle`)
       else refetchProduct()
     },
     onError: () => setError('Ürün kaydedilemedi. Alanları kontrol edin (kategori, ad, fiyat gerekli).'),
