@@ -29,6 +29,8 @@ class ProductResource extends JsonResource
                 $this->relationLoaded('variants'),
                 fn () => (int) $this->variants->sum('stock')
             ),
+            // Varyant sayısı (withCount ile yüklendiyse — admin listesi)
+            'variants_count' => $this->whenCounted('variants'),
         ];
     }
 }

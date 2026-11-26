@@ -45,6 +45,7 @@ export interface Product {
   variants?: ProductVariant[]
   images?: ProductImage[]
   total_stock?: number
+  variants_count?: number
 }
 
 // Laravel sayfalama yanıtı

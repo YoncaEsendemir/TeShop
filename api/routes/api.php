@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Api\V1\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Api\V1\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Api\V1\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Api\V1\Admin\ProductImageController as AdminImageController;
 use App\Http\Controllers\Api\V1\Admin\ProductVariantController as AdminVariantController;
@@ -32,6 +33,7 @@ Route::prefix('v1')->group(function () {
         Route::middleware(['auth:sanctum', 'admin'])->group(function () {
             Route::post('/logout', [AdminAuthController::class, 'logout']);
             Route::get('/me', [AdminAuthController::class, 'me']);
+            Route::get('/stats', [AdminDashboardController::class, 'stats']);
 
             // Kategori + Ürün CRUD
             Route::apiResource('categories', AdminCategoryController::class);

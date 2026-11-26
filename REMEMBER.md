@@ -13,7 +13,30 @@
   `docker compose exec api php artisan ...`
 
 ## 🎯 Şu an neredeyiz
-**Faz 3 — Storefront (koyu tema)** ✅ ÇEKİRDEK BİTTİ → sırada Faz 4 (Admin panel frontend)
+**Faz 4 — Admin panel (frontend)** ✅ BİTTİ → sırada Faz 5 (KVKK/SEO/i18n/Test)
+
+### Faz 4'te yapılanlar (26.11.2026)
+- Backend: `Admin\DashboardController@stats` + route `GET /admin/stats` (ürün/kategori/varyant/stok sayıları)
+- Backend: ProductResource'a `variants_count` (whenCounted) eklendi
+- Frontend auth: `store/auth.ts` (Zustand+persist token), `services/adminApi.ts` (Bearer interceptor, 401→logout)
+- `layouts/AdminLayout.tsx` (korumalı: token yoksa /admin/login'e; sidebar+topbar+çıkış)
+- Sayfalar: `admin/Login`, `admin/Dashboard` (istatistik+stok), `admin/AdminCategories` (CRUD),
+  `admin/AdminProducts` (liste+arama+sayfalama+sil), `admin/AdminProductEdit` (ürün formu + varyant
+  ekle/stok-düzenle/sil + görsel yükle/sil/kapak)
+- Route'lar (`App.tsx`): /admin/login, /admin (index=Dashboard), /admin/kategoriler, /admin/urunler,
+  /admin/urunler/yeni, /admin/urunler/:slug/duzenle
+- ✅ Tarayıcıda doğrulandı: login→dashboard (gerçek stats), ürün listesi (varyant sayıları),
+  ürün düzenle (dolu form + varyant/görsel bölümleri). Build temiz.
+- Admin giriş: **admin@teshop.test / password**
+- NOT: AdminCategories browser'da test edilmedi ama aynı kanıtlanmış pattern. Sil işlemleri `confirm()` kullanıyor.
+
+### Git / Ayarlar (26.11.2026)
+- ✅ GitHub'a push edildi: https://github.com/YoncaEsendemir/TeShop (branch: main)
+- ✅ Atıf KAPALI: `.claude/settings.json` → `includeCoAuthoredBy: false` (commit'lerde Claude atıfı yok)
+- ✅ `.gitignore` güçlendirildi: .env/.key/vendor/node_modules/storage/uploads/.claude skills/.agents vs.
+- Commit/push komutu: `git add -A && git commit -m "..." && git push`
+
+### Faz 3 — Storefront (koyu tema) ✅ ÇEKİRDEK BİTTİ (önceki durum korunur)
 
 ### Faz 3'te yapılanlar (26.11.2026)
 - Kütüphaneler (container'a): react-router-dom, @tanstack/react-query, zustand, axios,
@@ -87,13 +110,14 @@
 - [x] `User` modeline `HasApiTokens` trait eklendi (`app/Models/User.php`)
 - [x] `docker compose up --build` ✅ → api/storefront/mysql hepsi HTTP 200, migration'lar çalıştı
 
-## 🔜 SIRADAKİ (Faz 4 — Admin panel frontend)
-1. [ ] Admin giriş sayfası (token sakla) + korumalı route (admin layout)
-2. [ ] Dashboard (ürün/kategori/sipariş sayısı, stok uyarısı)
-3. [ ] Kategori/Ürün/Varyant yönetim ekranları (CRUD, admin API'ye bağlı)
-4. [ ] Görsel yükleme arayüzü (admin)
-- Faz 3 polish (sonra): çoklu görsel galerisi, kategori alt-filtreleri, çerez banner (Faz 5)
-- [ ] (Yonca) GitHub remote aç + ilk commit/push
+## 🔜 SIRADAKİ (Faz 5 — KVKK, SEO, i18n, Test)
+1. [ ] Çerez banner (KVKK) + yasal sayfalar (/gizlilik, /kvkk, /mesafeli-satis, /iade)
+2. [ ] SEO: ⏰ Yonca'nın SEO skill'i + prerender + sitemap/robots + JSON-LD genişlet
+3. [ ] i18n (TR/DE/EN) + react-i18next + hreflang
+4. [ ] Testler (Pest backend + Vitest frontend) + Cloudflare security-audit
+5. [ ] Sentry (Laravel + React)
+- Faz 3 polish (sonra): çoklu görsel galerisi, kategori alt-filtreleri
+- Prod öncesi: CORS daralt, APP_DEBUG=false, kod bölme (chunk >500KB uyarısı)
 
 ## 🔐 GÜVENLİK TARAMASI (26.11.2026, Faz 1+2 kodu — kaynak incelemesi)
 - [x] ✅ DÜZELTİLDİ: `User.role` fillable'dan çıkarıldı (Faz 6 register'da yetki yükseltme önlendi);
