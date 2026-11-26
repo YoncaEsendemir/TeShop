@@ -1,0 +1,26 @@
+# TeShop Backend — Laravel 12 (PHP 8.3) geliştirme
+FROM php:8.3-cli
+
+# Sistem bağımlılıkları (gd, zip, intl için gerekli kütüphaneler)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git unzip libzip-dev libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libicu-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j"$(nproc)" pdo_mysql mbstring bcmath zip gd exif intl \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Composer (resmi imajdan kopyala)
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
+
+# Önce bağımlılık dosyaları -> katman cache
+COPY composer.json composer.lock ./
+RUN composer install --no-interaction --no-scripts --prefer-dist
+
+# Kalan kaynak kod (çalışırken volume ile üzerine biner)
+COPY . .
+
+EXPOSE 8000
+
+# Laravel dev server (container dışından erişim için 0.0.0.0)
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]

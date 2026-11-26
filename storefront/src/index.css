@@ -1,0 +1,77 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   TeShop — Koyu Tema Tasarım Token'ları (PROJE.md Bölüm 4)
+   Tailwind v4: @theme içindeki değişkenler utility üretir
+   (örn. --color-bg -> bg-bg, text-bg; --font-display -> font-display)
+   ============================================================ */
+@theme {
+  /* Renkler — monokrom koyu tema */
+  --color-bg: #0a0a0a; /* ana arka plan */
+  --color-surface: #151515; /* kart / panel */
+  --color-surface-2: #1f1f1f; /* yükseltilmiş yüzey, hover */
+  --color-border-subtle: #2a2a2a; /* ince ayraç çizgileri */
+  --color-text: #fafafa; /* ana metin */
+  --color-text-muted: #a1a1a1; /* ikincil metin */
+  --color-text-subtle: #6b6b6b; /* en silik metin */
+  --color-primary: #ffffff; /* ana buton zemini */
+  --color-primary-text: #0a0a0a; /* ana buton yazısı */
+  --color-accent: #e5e5e5; /* hover / vurgu */
+  --color-success: #22c55e; /* stokta var */
+  --color-danger: #ef4444; /* stok yok / hata */
+
+  /* Tipografi */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Taban stiller */
+@layer base {
+  html,
+  body {
+    /* Yatay taşmayı kes (Hallmark Floor) — hidden/100vw değil */
+    overflow-x: clip;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Display başlıklar: uzun kelime taşmasın (Hallmark Floor) */
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+
+  /* Etiket/rozet stili: büyük harf + geniş harf aralığı (Bölüm 4.2) */
+  .label-caps {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================================
+   ERİŞİLEBİLİRLİK — Hareket Azaltma (prefers-reduced-motion)
+   Yonca'nın özel isteği: hareketi azaltan kullanıcıda animasyon kapanır.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

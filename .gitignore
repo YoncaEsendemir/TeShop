@@ -1,0 +1,62 @@
+# ==========================================================
+#  TeShop — kök .gitignore (api/ + storefront/ + tooling)
+# ==========================================================
+
+# --- Ortam & GİZLİ (asla commit etme!) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+auth.json
+# Laravel uygulama anahtarı / oauth anahtarları
+/api/storage/*.key
+/api/storage/oauth-*.key
+
+# --- Bağımlılıklar ---
+node_modules/
+vendor/
+
+# --- Build / derleme çıktıları ---
+dist/
+build/
+/storefront/dist/
+/api/public/build/
+/api/public/hot
+
+# --- Laravel çalışma zamanı ---
+/api/storage/app/public/*
+!/api/storage/app/public/.gitignore
+/api/storage/framework/cache/*
+/api/storage/framework/sessions/*
+/api/storage/framework/views/*
+/api/storage/logs/*
+/api/bootstrap/cache/*
+/api/public/storage
+
+# --- Yüklenen dosyalar ---
+uploads/
+
+# --- Log & geçici ---
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# --- OS / sistem ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editör ---
+.vscode/
+.idea/
+*.swp
+
+# --- Claude / AI araçları (makineye özel; repoyu şişirmesin) ---
+.claude/settings.local.json
+.claude/skills/
+.agents/
+.continue/
+
+# --- Docker (opsiyonel yerel override) ---
+docker-compose.override.yml

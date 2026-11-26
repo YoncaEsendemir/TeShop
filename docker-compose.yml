@@ -1,0 +1,57 @@
+# TeShop — Geliştirme ortamı (Docker)
+# Servisler: storefront (React/Vite) + api (Laravel 12) + mysql
+
+services:
+  # --- Backend: Laravel 12 API (PHP 8.3 + Sanctum) ---
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.dev
+    container_name: teshop_api
+    ports:
+      - '8000:8000' # tarayıcı -> http://localhost:8000
+    volumes:
+      - ./api:/var/www/html # kaynak kodu canlı bağla
+      - /var/www/html/vendor # container'ın vendor'ını koru
+    depends_on:
+      mysql:
+        condition: service_healthy # mysql hazır olunca başla
+    restart: unless-stopped
+
+  # --- Frontend: React + Vite (koyu tema storefront) ---
+  storefront:
+    build:
+      context: ./storefront
+      dockerfile: Dockerfile.dev
+    container_name: teshop_storefront
+    ports:
+      - '5173:5173' # tarayıcı -> http://localhost:5173
+    volumes:
+      - ./storefront:/app # kaynak kodu canlı bağla (hot reload)
+      - /app/node_modules # container'ın node_modules'ını koru
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Windows'ta dosya izleme için
+    restart: unless-stopped
+
+  # --- Veritabanı: MySQL 8 ---
+  mysql:
+    image: mysql:8.0
+    container_name: teshop_mysql
+    ports:
+      - '3306:3306' # host'tan (ör. DBeaver) bağlanmak için
+    environment:
+      MYSQL_DATABASE: teshop
+      MYSQL_USER: teshop
+      MYSQL_PASSWORD: teshop_secret
+      MYSQL_ROOT_PASSWORD: root_secret
+    volumes:
+      - mysql_data:/var/lib/mysql # veriyi kalıcı tut
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-uroot', '-proot_secret']
+      interval: 5s
+      timeout: 5s
+      retries: 15
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

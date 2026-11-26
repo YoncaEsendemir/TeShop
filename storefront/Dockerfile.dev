@@ -1,0 +1,16 @@
+# TeShop Frontend — Geliştirme (Vite dev server)
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Önce sadece bağımlılık dosyaları -> katman cache (kod değişince npm install tekrar çalışmaz)
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Kalan kaynak kod (çalışırken volume ile üzerine biner)
+COPY . .
+
+EXPOSE 5173
+
+# host 0.0.0.0 -> container dışından erişim (vite.config.ts'te de ayarlı)
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
