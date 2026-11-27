@@ -64,12 +64,12 @@ class ShopSeeder extends Seeder
             // Aksesuar
             [$aksesuar, ['tr' => 'Deri Kemer', 'en' => 'Leather Belt', 'de' => 'Ledergürtel'], 299.90, null, ['Std'], ['Siyah', 'Kahve'], $img('1624222247344-550fb60583dc')],
             [$aksesuar, ['tr' => 'Örgü Bere', 'en' => 'Knit Beanie', 'de' => 'Strickmütze'], 199.90, 149.90, ['Std'], ['Siyah', 'Gri'], $img('1510598969022-c4c6c5d05769')],
-            [$aksesuar, ['tr' => 'Kanvas Sırt Çantası', 'en' => 'Canvas Backpack', 'de' => 'Canvas-Rucksack'], 499.90, null, ['Std'], ['Siyah', 'Haki'], $img('1553062407-98eeb64c6a62')],
+            [$aksesuar, ['tr' => 'Kanvas Sırt Çantası', 'en' => 'Canvas Backpack', 'de' => 'Canvas-Rucksack'], 499.90, null, ['Std'], ['Siyah', 'Haki'], $img('1547949003-9792a18a2601')],
 
             // İndirim (hepsi indirimli)
             [$indirim, ['tr' => 'Triko Panço', 'en' => 'Knit Poncho', 'de' => 'Strickponcho'], 749.90, 499.90, ['Std'], ['Bej', 'Gri'], $img('1434389677669-e08b4cac3105')],
             [$indirim, ['tr' => 'Klasik Gömlek', 'en' => 'Classic Shirt', 'de' => 'Klassisches Hemd'], 449.90, 299.90, ['S', 'M', 'L', 'XL'], ['Lacivert', 'Beyaz', 'Bordo'], $img('1602810318383-e386cc2a3ccf')],
-            [$indirim, ['tr' => 'Deri Ceket', 'en' => 'Leather Jacket', 'de' => 'Lederjacke'], 1499.90, 999.90, ['M', 'L', 'XL'], ['Siyah', 'Kahve'], $img('1547949003-9792a18a2601')],
+            [$indirim, ['tr' => 'Deri Ceket', 'en' => 'Leather Jacket', 'de' => 'Lederjacke'], 1499.90, 999.90, ['M', 'L', 'XL'], ['Siyah', 'Kahve'], $img('1487222477894-8943e31ef7b2')],
         ];
 
         foreach ($urunler as [$kategori, $ad, $fiyat, $indirim, $bedenler, $renkler, $gorsel]) {
