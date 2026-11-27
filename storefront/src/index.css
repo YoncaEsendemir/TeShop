@@ -68,6 +68,24 @@
   }
 }
 
+/* Duyuru bandı: kesintisiz kayan şerit (marquee). İçerik iki kez basılır,
+   -%50 ötelenince dikişsiz döner. Reduced-motion'da global kural durdurur
+   + bileşen zaten statik satıra düşer. */
+@keyframes teshop-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: teshop-marquee 28s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* ============================================================
    ERİŞİLEBİLİRLİK — Hareket Azaltma (prefers-reduced-motion)
    Yonca'nın özel isteği: hareketi azaltan kullanıcıda animasyon kapanır.

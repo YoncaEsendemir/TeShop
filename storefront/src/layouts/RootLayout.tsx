@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import AnnouncementBar from '../components/AnnouncementBar'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import CartDrawer from '../components/CartDrawer'
@@ -17,6 +18,7 @@ export default function RootLayout() {
   return (
     <div className="flex min-h-screen flex-col">
       <OrganizationJsonLd />
+      <AnnouncementBar />
       <Navbar />
       <main className="flex-1">
         <Outlet />

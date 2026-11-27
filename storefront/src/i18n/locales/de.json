@@ -1,4 +1,9 @@
 {
+  "announce": {
+    "shipping": "Kostenloser Versand für alle Bestellungen",
+    "season": "Neue Saison im Sale — bis zu 50% Rabatt",
+    "secure": "Sicheres Bezahlen & einfache Rückgabe"
+  },
   "nav": { "all": "Alle Produkte", "search": "Suche…", "cartLabel": "Warenkorb ({{count}} Artikel)" },
   "home": {
     "newSeason": "Neue Saison",

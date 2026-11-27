@@ -1,4 +1,9 @@
 {
+  "announce": {
+    "shipping": "Free shipping on all orders",
+    "season": "New season on sale — up to 50% off",
+    "secure": "Secure checkout & easy returns"
+  },
   "nav": { "all": "All Products", "search": "Search…", "cartLabel": "Cart ({{count}} items)" },
   "home": {
     "newSeason": "New Season",

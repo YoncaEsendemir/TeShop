@@ -1,4 +1,9 @@
 {
+  "announce": {
+    "shipping": "Tüm siparişlerde ücretsiz kargo",
+    "season": "Yeni sezon indirimde — %50'ye varan fırsatlar",
+    "secure": "Güvenli ödeme & kolay iade"
+  },
   "nav": { "all": "Tüm Ürünler", "search": "Ara…", "cartLabel": "Sepet ({{count}} ürün)" },
   "home": {
     "newSeason": "Yeni Sezon",
