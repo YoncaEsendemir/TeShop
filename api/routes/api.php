@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Api\V1\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Api\V1\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Api\V1\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Api\V1\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Api\V1\Admin\ProductImageController as AdminImageController;
 use App\Http\Controllers\Api\V1\Admin\ProductVariantController as AdminVariantController;
@@ -53,6 +54,12 @@ Route::prefix('v1')->middleware('locale')->group(function () {
             // Görseller (ürüne id ile yükle; tekil sil)
             Route::post('products/{product:id}/images', [AdminImageController::class, 'store']);
             Route::delete('images/{image}', [AdminImageController::class, 'destroy']);
+
+            // Siparişler
+            Route::get('orders', [AdminOrderController::class, 'index']);
+            Route::post('orders', [AdminOrderController::class, 'store']);
+            Route::get('orders/{order}', [AdminOrderController::class, 'show']);
+            Route::patch('orders/{order}/status', [AdminOrderController::class, 'updateStatus']);
         });
     });
 });

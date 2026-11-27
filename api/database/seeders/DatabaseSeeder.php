@@ -27,5 +27,8 @@ class DatabaseSeeder extends Seeder
 
         // Mağaza verisi: kategoriler + ürünler + varyantlar + görseller
         $this->call(ShopSeeder::class);
+
+        // Gerçekçi geçmiş siparişler (dashboard gelir grafikleri için)
+        $this->call(OrderSeeder::class);
     }
 }
