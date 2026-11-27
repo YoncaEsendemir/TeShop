@@ -47,6 +47,14 @@ export async function adminLogout() {
 }
 
 // --- Dashboard ---
+export interface StockItem {
+  product_id: number
+  product_name: string
+  size: string | null
+  color: string | null
+  stock: number
+}
+
 export interface AdminStats {
   products: number
   active_products: number
@@ -54,6 +62,23 @@ export interface AdminStats {
   variants: number
   low_stock: number
   out_of_stock: number
+  inventory_value: number
+  stock_by_category: { name: string; stock: number }[]
+  low_stock_items: StockItem[]
+  out_of_stock_items: StockItem[]
+  total_revenue: number
+  orders_count: number
+  avg_order_value: number
+  revenue_by_month: { month: string; label: string; total: number }[]
+  orders_by_status: { status: string; count: number }[]
+  top_products: { name: string; qty: number; revenue: number }[]
+  recent_orders: {
+    order_number: string
+    customer_name: string
+    total: string
+    status: string
+    placed_at: string | null
+  }[]
 }
 
 export async function fetchStats(): Promise<AdminStats> {
