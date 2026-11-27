@@ -25,6 +25,12 @@ class ShopSeeder extends Seeder
         $erkekUst = Category::create(['name' => $top, 'slug' => 'erkek-ust-giyim', 'parent_id' => $erkek->id]);
         $erkekAlt = Category::create(['name' => $bottom, 'slug' => 'erkek-alt-giyim', 'parent_id' => $erkek->id]);
 
+        // --- Ek ana kategoriler ---
+        $spor = Category::create(['name' => ['tr' => 'Spor', 'en' => 'Sport', 'de' => 'Sport'], 'slug' => 'spor']);
+        $ayakkabi = Category::create(['name' => ['tr' => 'Ayakkabı', 'en' => 'Shoes', 'de' => 'Schuhe'], 'slug' => 'ayakkabi']);
+        $aksesuar = Category::create(['name' => ['tr' => 'Aksesuar', 'en' => 'Accessories', 'de' => 'Accessoires'], 'slug' => 'aksesuar']);
+        $indirim = Category::create(['name' => ['tr' => 'İndirim', 'en' => 'Sale', 'de' => 'Sale'], 'slug' => 'indirim']);
+
         // açıklama şablonu (dile göre)
         $desc = fn (array $n): array => [
             'tr' => $n['tr'].' — premium kumaş, modern kesim. Koyu tema mağazamızın öne çıkan parçası.',
@@ -44,6 +50,26 @@ class ShopSeeder extends Seeder
             [$erkekUst, ['tr' => 'Regular Fit Tişört', 'en' => 'Regular Fit T-Shirt', 'de' => 'Regular-Fit T-Shirt'], 279.90, null, ['S', 'M', 'L', 'XL'], ['Siyah', 'Beyaz', 'Lacivert'], $img('1562157873-818bc0726f68')],
             [$erkekUst, ['tr' => 'Kapüşonlu Sweatshirt', 'en' => 'Hooded Sweatshirt', 'de' => 'Kapuzen-Sweatshirt'], 699.90, 599.90, ['M', 'L', 'XL'], ['Siyah', 'Antrasit'], $img('1556821840-3a63f95609a7')],
             [$erkekAlt, ['tr' => 'Slim Fit Chino Pantolon', 'en' => 'Slim Fit Chino Trousers', 'de' => 'Slim-Fit Chino-Hose'], 649.90, null, ['30', '32', '34', '36'], ['Siyah', 'Bej', 'Lacivert'], $img('1473966968600-fa801b869a1a')],
+
+            // Spor
+            [$spor, ['tr' => 'Dry-Fit Spor Tişört', 'en' => 'Dry-Fit Sports T-Shirt', 'de' => 'Dry-Fit Sportshirt'], 349.90, 299.90, ['S', 'M', 'L', 'XL'], ['Siyah', 'Gri'], $img('1571019613454-1cb2f99b2d8b')],
+            [$spor, ['tr' => 'Eşofman Altı', 'en' => 'Sweatpants', 'de' => 'Jogginghose'], 599.90, null, ['S', 'M', 'L', 'XL'], ['Siyah', 'Antrasit'], $img('1552902865-b72c031ac5ea')],
+            [$spor, ['tr' => 'Koşu Şortu', 'en' => 'Running Shorts', 'de' => 'Laufshorts'], 279.90, null, ['S', 'M', 'L', 'XL'], ['Siyah', 'Lacivert'], $img('1483721310020-03333e577078')],
+
+            // Ayakkabı
+            [$ayakkabi, ['tr' => 'Koşu Ayakkabısı', 'en' => 'Running Shoes', 'de' => 'Laufschuhe'], 1299.90, 999.90, ['39', '40', '41', '42', '43', '44'], ['Siyah', 'Beyaz'], $img('1542291026-7eec264c27ff')],
+            [$ayakkabi, ['tr' => 'Günlük Sneaker', 'en' => 'Casual Sneakers', 'de' => 'Freizeit-Sneaker'], 899.90, null, ['39', '40', '41', '42', '43', '44'], ['Beyaz', 'Gri'], $img('1600185365483-26d7a4cc7519')],
+            [$ayakkabi, ['tr' => 'Deri Bot', 'en' => 'Leather Boots', 'de' => 'Lederstiefel'], 1599.90, null, ['39', '40', '41', '42', '43', '44'], ['Siyah', 'Kahve'], $img('1608256246200-53e635b5b65f')],
+
+            // Aksesuar
+            [$aksesuar, ['tr' => 'Deri Kemer', 'en' => 'Leather Belt', 'de' => 'Ledergürtel'], 299.90, null, ['Std'], ['Siyah', 'Kahve'], $img('1624222247344-550fb60583dc')],
+            [$aksesuar, ['tr' => 'Örgü Bere', 'en' => 'Knit Beanie', 'de' => 'Strickmütze'], 199.90, 149.90, ['Std'], ['Siyah', 'Gri'], $img('1510598969022-c4c6c5d05769')],
+            [$aksesuar, ['tr' => 'Kanvas Sırt Çantası', 'en' => 'Canvas Backpack', 'de' => 'Canvas-Rucksack'], 499.90, null, ['Std'], ['Siyah', 'Haki'], $img('1553062407-98eeb64c6a62')],
+
+            // İndirim (hepsi indirimli)
+            [$indirim, ['tr' => 'Triko Panço', 'en' => 'Knit Poncho', 'de' => 'Strickponcho'], 749.90, 499.90, ['Std'], ['Bej', 'Gri'], $img('1434389677669-e08b4cac3105')],
+            [$indirim, ['tr' => 'Klasik Gömlek', 'en' => 'Classic Shirt', 'de' => 'Klassisches Hemd'], 449.90, 299.90, ['S', 'M', 'L', 'XL'], ['Lacivert', 'Beyaz', 'Bordo'], $img('1602810318383-e386cc2a3ccf')],
+            [$indirim, ['tr' => 'Deri Ceket', 'en' => 'Leather Jacket', 'de' => 'Lederjacke'], 1499.90, 999.90, ['M', 'L', 'XL'], ['Siyah', 'Kahve'], $img('1547949003-9792a18a2601')],
         ];
 
         foreach ($urunler as [$kategori, $ad, $fiyat, $indirim, $bedenler, $renkler, $gorsel]) {
