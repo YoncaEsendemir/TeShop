@@ -3,6 +3,7 @@ import { LayoutDashboard, FolderTree, Package, LogOut, Store } from 'lucide-reac
 import { useAuth } from '../store/auth'
 import { adminLogout } from '../services/adminApi'
 import { cn } from '../lib/utils'
+import ThemeToggle from '../components/ThemeToggle'
 
 const NAV = [
   { to: '/admin', label: 'Panel', icon: LayoutDashboard, end: true },
@@ -95,6 +96,7 @@ export default function AdminLayout() {
           </nav>
 
           <div className="ml-auto flex items-center gap-4">
+            <ThemeToggle />
             <span className="hidden text-sm text-text-muted sm:inline">
               {user?.name}
             </span>

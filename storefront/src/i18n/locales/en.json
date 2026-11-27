@@ -4,6 +4,7 @@
     "season": "New season on sale — up to 50% off",
     "secure": "Secure checkout & easy returns"
   },
+  "theme": { "toggle": "Toggle theme", "label": "Theme", "light": "Light", "dark": "Dark", "system": "System" },
   "nav": { "all": "All Products", "search": "Search…", "cartLabel": "Cart ({{count}} items)" },
   "home": {
     "newSeason": "New Season",

@@ -2,6 +2,26 @@
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
+    <!-- Tema: React'ten önce data-theme'i set et (FOUC yok) -->
+    <script>
+      (function () {
+        try {
+          var t = 'dark'
+          var raw = localStorage.getItem('teshop-theme')
+          if (raw) {
+            var p = JSON.parse(raw)
+            t = (p && p.state && p.state.theme) || 'dark'
+          }
+          var dark =
+            t === 'dark' ||
+            (t === 'system' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark'
+        }
+      })()
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="TeShop — modern, minimal koyu tema giyim mağazası." />

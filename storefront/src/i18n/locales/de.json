@@ -4,6 +4,7 @@
     "season": "Neue Saison im Sale — bis zu 50% Rabatt",
     "secure": "Sicheres Bezahlen & einfache Rückgabe"
   },
+  "theme": { "toggle": "Thema wechseln", "label": "Thema", "light": "Hell", "dark": "Dunkel", "system": "System" },
   "nav": { "all": "Alle Produkte", "search": "Suche…", "cartLabel": "Warenkorb ({{count}} Artikel)" },
   "home": {
     "newSeason": "Neue Saison",

@@ -4,6 +4,7 @@
     "season": "Yeni sezon indirimde — %50'ye varan fırsatlar",
     "secure": "Güvenli ödeme & kolay iade"
   },
+  "theme": { "toggle": "Tema değiştir", "label": "Tema", "light": "Açık", "dark": "Koyu", "system": "Sistem" },
   "nav": { "all": "Tüm Ürünler", "search": "Ara…", "cartLabel": "Sepet ({{count}} ürün)" },
   "home": {
     "newSeason": "Yeni Sezon",

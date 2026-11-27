@@ -8,6 +8,7 @@ import { fetchCategories } from '../services/api'
 import { useCart } from '../store/cart'
 import { cn } from '../lib/utils'
 import LanguageSwitcher from './LanguageSwitcher'
+import ThemeToggle from './ThemeToggle'
 
 export default function Navbar() {
   const navigate = useNavigate()
@@ -90,6 +91,8 @@ export default function Navbar() {
               />
             </div>
           </form>
+
+          <ThemeToggle />
 
           <LanguageSwitcher />
 
