@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { Product } from '../types'
 import { formatPrice, imageUrl } from '../lib/utils'
 
 export default function ProductCard({ product }: { product: Product }) {
   const reduce = useReducedMotion()
+  const { t } = useTranslation()
   const [imgError, setImgError] = useState(false)
 
   const primary =
@@ -46,12 +48,12 @@ export default function ProductCard({ product }: { product: Product }) {
           <div className="absolute left-3 top-3 flex flex-col gap-2">
             {product.has_discount && (
               <span className="label-caps rounded-full bg-primary px-2.5 py-1 font-semibold text-primary-text">
-                İndirim
+                {t('card.discount')}
               </span>
             )}
             {outOfStock && (
               <span className="label-caps rounded-full bg-surface-2 px-2.5 py-1 font-semibold text-text-muted">
-                Tükendi
+                {t('card.soldOut')}
               </span>
             )}
           </div>

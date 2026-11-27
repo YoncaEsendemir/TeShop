@@ -1,0 +1,78 @@
+{
+  "nav": { "all": "All Products", "search": "Search…", "cartLabel": "Cart ({{count}} items)" },
+  "home": {
+    "newSeason": "New Season",
+    "title1": "Monochrome.",
+    "title2": "Timeless.",
+    "desc": "Pieces designed in the simplicity of black, grey and white. For a small but essential wardrobe.",
+    "shopNow": "Shop Now",
+    "women": "Women's Collection",
+    "featured": "Featured",
+    "seeAll": "See all"
+  },
+  "product": {
+    "color": "Color",
+    "size": "Size",
+    "inStock": "In stock ({{count}} left)",
+    "outOfStock": "This option is sold out",
+    "selectOptions": "Select options",
+    "addToCart": "Add to Cart",
+    "added": "Added to Cart",
+    "notFound": "Product not found.",
+    "backToProducts": "Back to all products"
+  },
+  "breadcrumb": { "home": "Home", "products": "Products" },
+  "products": {
+    "all": "All Products",
+    "results": "Results for “{{q}}”",
+    "sort": "Sort",
+    "sortNewest": "Newest",
+    "sortPriceAsc": "Price (low to high)",
+    "sortPriceDesc": "Price (high to low)",
+    "sortName": "Name (A-Z)",
+    "none": "No products found.",
+    "error": "An error occurred while loading products. Please try again.",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "card": { "discount": "Sale", "soldOut": "Sold out" },
+  "cart": {
+    "title": "My Cart",
+    "empty": "Your cart is empty.",
+    "start": "Start Shopping",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "checkoutNote": "Checkout will be added in Phase 6.",
+    "remove": "Remove",
+    "increase": "Increase",
+    "decrease": "Decrease",
+    "close": "Close"
+  },
+  "footer": {
+    "tagline": "Modern, minimal and monochrome clothing. Carefully selected pieces.",
+    "shopping": "Shopping",
+    "corporate": "Corporate",
+    "help": "Help",
+    "all": "All Products",
+    "women": "Women",
+    "men": "Men",
+    "privacy": "Privacy Policy",
+    "kvkk": "Data Protection",
+    "distance": "Distance Sales",
+    "returns": "Returns & Refunds",
+    "shipping": "Shipping & Delivery",
+    "contact": "Contact",
+    "rights": "© {{year}} TeShop. All rights reserved."
+  },
+  "cookie": {
+    "text": "We use cookies to improve your experience. Non-essential cookies are only enabled with your consent.",
+    "policy": "Cookie Policy",
+    "accept": "Accept",
+    "reject": "Reject"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "desc": "The page you are looking for may have moved or never existed.",
+    "back": "Back to Home"
+  }
+}

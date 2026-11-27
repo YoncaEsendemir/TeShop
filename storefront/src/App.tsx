@@ -4,6 +4,7 @@ import AdminLayout from './layouts/AdminLayout'
 import Home from './pages/Home'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
+import Legal from './pages/Legal'
 import NotFound from './pages/NotFound'
 import AdminLogin from './pages/admin/Login'
 import Dashboard from './pages/admin/Dashboard'
@@ -20,6 +21,16 @@ function App() {
         <Route path="/urunler" element={<Products />} />
         <Route path="/kategori/:slug" element={<Products />} />
         <Route path="/urun/:slug" element={<ProductDetail />} />
+
+        {/* Yasal sayfalar (KVKK) */}
+        <Route path="/gizlilik" element={<Legal slug="gizlilik" />} />
+        <Route path="/kvkk" element={<Legal slug="kvkk" />} />
+        <Route path="/cerez-politikasi" element={<Legal slug="cerez-politikasi" />} />
+        <Route path="/mesafeli-satis" element={<Legal slug="mesafeli-satis" />} />
+        <Route path="/iade" element={<Legal slug="iade" />} />
+        <Route path="/kargo" element={<Legal slug="kargo" />} />
+        <Route path="/iletisim" element={<Legal slug="iletisim" />} />
+
         <Route path="*" element={<NotFound />} />
       </Route>
 

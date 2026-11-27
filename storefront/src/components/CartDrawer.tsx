@@ -1,11 +1,13 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useCart } from '../store/cart'
 import { formatPrice, imageUrl } from '../lib/utils'
 
 export default function CartDrawer() {
   const reduce = useReducedMotion()
+  const { t } = useTranslation()
   const { items, isOpen, closeCart, removeItem, updateQuantity } = useCart()
   const subtotal = useCart((s) => s.subtotal())
 
@@ -35,12 +37,12 @@ export default function CartDrawer() {
             aria-label="Sepet"
           >
             <div className="flex items-center justify-between border-b border-border-subtle px-5 py-4">
-              <h2 className="font-display text-lg font-semibold text-text">Sepetim</h2>
+              <h2 className="font-display text-lg font-semibold text-text">{t('cart.title')}</h2>
               <button
                 type="button"
                 onClick={closeCart}
                 className="rounded-full p-2 text-text-muted hover:text-text focus-visible:outline-2 focus-visible:outline-text"
-                aria-label="Kapat"
+                aria-label={t('cart.close')}
               >
                 <X size={20} />
               </button>
@@ -49,13 +51,13 @@ export default function CartDrawer() {
             {items.length === 0 ? (
               <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
                 <ShoppingBag size={40} className="text-text-subtle" />
-                <p className="text-text-muted">Sepetin henüz boş.</p>
+                <p className="text-text-muted">{t('cart.empty')}</p>
                 <button
                   type="button"
                   onClick={closeCart}
                   className="rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-text transition-transform hover:scale-105"
                 >
-                  Alışverişe Başla
+                  {t('cart.start')}
                 </button>
               </div>
             ) : (
@@ -92,7 +94,7 @@ export default function CartDrawer() {
                                 type="button"
                                 onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
                                 className="p-1.5 text-text-muted hover:text-text focus-visible:outline-2 focus-visible:outline-text"
-                                aria-label="Azalt"
+                                aria-label={t('cart.decrease')}
                               >
                                 <Minus size={14} />
                               </button>
@@ -102,7 +104,7 @@ export default function CartDrawer() {
                                 onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
                                 disabled={item.quantity >= item.maxStock}
                                 className="p-1.5 text-text-muted hover:text-text disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-text"
-                                aria-label="Artır"
+                                aria-label={t('cart.increase')}
                               >
                                 <Plus size={14} />
                               </button>
@@ -111,7 +113,7 @@ export default function CartDrawer() {
                               type="button"
                               onClick={() => removeItem(item.variantId)}
                               className="text-text-subtle hover:text-danger focus-visible:outline-2 focus-visible:outline-text"
-                              aria-label="Kaldır"
+                              aria-label={t('cart.remove')}
                             >
                               <Trash2 size={16} />
                             </button>
@@ -124,7 +126,7 @@ export default function CartDrawer() {
 
                 <div className="border-t border-border-subtle px-5 py-4">
                   <div className="mb-3 flex items-center justify-between">
-                    <span className="text-text-muted">Ara Toplam</span>
+                    <span className="text-text-muted">{t('cart.subtotal')}</span>
                     <span className="font-display text-lg font-semibold text-text">
                       {formatPrice(subtotal)}
                     </span>
@@ -133,10 +135,10 @@ export default function CartDrawer() {
                     type="button"
                     className="w-full rounded-full bg-primary py-3 text-sm font-medium text-primary-text transition-transform hover:scale-[1.02] active:scale-95"
                   >
-                    Ödemeye Geç
+                    {t('cart.checkout')}
                   </button>
                   <p className="mt-2 text-center text-xs text-text-subtle">
-                    Ödeme adımı Faz 6'da eklenecek.
+                    {t('cart.checkoutNote')}
                   </p>
                 </div>
               </>

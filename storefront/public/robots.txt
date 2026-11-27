@@ -1,0 +1,7 @@
+# TeShop robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin
+
+# Yayında gerçek domain ile değiştir:
+Sitemap: https://example.com/sitemap.xml

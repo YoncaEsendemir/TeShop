@@ -85,6 +85,34 @@ Her maddeyi dene, sağdaki kutuya ✅/❌ koy. Takıldığın yeri bana söyle, 
 
 ---
 
+## 🌐 C. Faz 5 — KVKK & Çoklu Dil (YENİ)
+
+### C1. Çerez banner (KVKK)
+- [ ] İlk ziyarette altta çerez banner'ı çıkıyor (Reddet / Kabul Et + Çerez Politikası linki)
+- [ ] "Kabul Et" / "Reddet" → banner kapanıyor
+- [ ] Sayfayı yenile → banner TEKRAR çıkmıyor (seçim hatırlanıyor)
+- [ ] (Sıfırlamak için: F12 → Application → Local Storage → `teshop-cookie-consent` sil)
+
+### C2. Yasal sayfalar
+- [ ] Footer'daki linkler açılıyor: Gizlilik, KVKK, Mesafeli Satış, İade, Kargo, İletişim, Çerez Politikası
+- [ ] Her sayfa düzgün görünüyor (başlık + bölümler)
+- [ ] NOT: İçerikte `[köşeli parantez]` alanları var → gerçek firma bilgilerini sen dolduracaksın
+
+### C3. Dil değiştirme (TR / DE / EN)
+- [ ] Navbar'da TR / DE / EN düğmeleri var
+- [ ] EN → hero "Monochrome. Timeless.", menü "All Products" vb. İngilizce oluyor
+- [ ] DE → Almanca oluyor ("Monochrom. Zeitlos.")
+- [ ] Sayfayı yenile → seçtiğin dil KORUNUYOR
+- [ ] NOT: Kategori/ürün ADLARI şimdilik hep Türkçe (içerik çevirisi ayrı iş — normal)
+
+### C4. SEO (teknik — tarayıcıda hızlı bakış)
+- [ ] http://localhost:5173/robots.txt açılıyor
+- [ ] http://localhost:5173/sitemap.xml açılıyor
+- [ ] Ürün detayda sağ tık → "Sayfa kaynağını görüntüle" → `application/ld+json` (Product) var
+- [ ] NOT: Gerçek SEO (senin SEO skill'in) + domain ayarı yayın aşamasında
+
+---
+
 ## 🐞 Bu turda otomatik testlerin yakaladığı bug
 - **Sorun:** Admin'de ürüne bağlı işlemler (varyant ekle, görsel yükle, ürün güncelle/sil)
   API'ye ürün **id**'si gönderiyordu ama route **slug** bekliyordu → 404 (panelde çalışmazdı).

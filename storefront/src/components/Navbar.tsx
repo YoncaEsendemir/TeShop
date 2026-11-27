@@ -1,15 +1,18 @@
 import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Menu, Search, ShoppingBag, X } from 'lucide-react'
 import { fetchCategories } from '../services/api'
 import { useCart } from '../store/cart'
 import { cn } from '../lib/utils'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Navbar() {
   const navigate = useNavigate()
   const reduce = useReducedMotion()
+  const { t } = useTranslation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [search, setSearch] = useState('')
 
@@ -62,7 +65,7 @@ export default function Navbar() {
         <ul className="hidden items-center gap-6 md:flex">
           <li>
             <NavLink to="/urunler" className={navLinkClass} end>
-              Tüm Ürünler
+              {t('nav.all')}
             </NavLink>
           </li>
           {categories.map((c) => (
@@ -82,17 +85,19 @@ export default function Navbar() {
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Ara…"
+                placeholder={t('nav.search')}
                 className="w-28 bg-transparent text-sm text-text placeholder:text-text-subtle focus:outline-none lg:w-40"
               />
             </div>
           </form>
 
+          <LanguageSwitcher />
+
           <button
             type="button"
             onClick={openCart}
             className="relative rounded-full p-2 text-text-muted hover:text-text focus-visible:outline-2 focus-visible:outline-text"
-            aria-label={`Sepet (${totalItems} ürün)`}
+            aria-label={t('nav.cartLabel', { count: totalItems })}
           >
             <ShoppingBag size={20} />
             {totalItems > 0 && (
@@ -121,7 +126,7 @@ export default function Navbar() {
                   <input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Ara…"
+                    placeholder={t('nav.search')}
                     className="w-full bg-transparent text-sm text-text placeholder:text-text-subtle focus:outline-none"
                   />
                 </div>
@@ -131,7 +136,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="block rounded-md px-2 py-2 text-text hover:bg-surface-2"
               >
-                Tüm Ürünler
+                {t('nav.all')}
               </Link>
               {categories.map((c) => (
                 <Link

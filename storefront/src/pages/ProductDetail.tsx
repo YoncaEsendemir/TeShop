@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Check, ChevronRight, ShoppingBag } from 'lucide-react'
 import { fetchProduct } from '../services/api'
@@ -12,6 +13,7 @@ import type { ProductVariant } from '../types'
 export default function ProductDetail() {
   const { slug = '' } = useParams()
   const reduce = useReducedMotion()
+  const { t } = useTranslation()
   const addItem = useCart((s) => s.addItem)
 
   const { data: product, isLoading, isError } = useQuery({
@@ -64,9 +66,9 @@ export default function ProductDetail() {
   if (isError || !product) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center">
-        <p className="text-text-muted">Ürün bulunamadı.</p>
+        <p className="text-text-muted">{t('product.notFound')}</p>
         <Link to="/urunler" className="mt-4 inline-block text-text underline">
-          Tüm ürünlere dön
+          {t('product.backToProducts')}
         </Link>
       </div>
     )
@@ -132,9 +134,9 @@ export default function ProductDetail() {
 
       {/* Breadcrumb */}
       <nav className="mb-6 flex items-center gap-1.5 text-sm text-text-subtle" aria-label="Breadcrumb">
-        <Link to="/" className="hover:text-text">Ana Sayfa</Link>
+        <Link to="/" className="hover:text-text">{t('breadcrumb.home')}</Link>
         <ChevronRight size={14} />
-        <Link to="/urunler" className="hover:text-text">Ürünler</Link>
+        <Link to="/urunler" className="hover:text-text">{t('breadcrumb.products')}</Link>
         {product.category && (
           <>
             <ChevronRight size={14} />
@@ -191,7 +193,7 @@ export default function ProductDetail() {
           {colors.length > 0 && (
             <div className="mt-8">
               <h2 className="mb-3 text-sm font-medium text-text">
-                Renk{selectedColor && <span className="text-text-muted"> · {selectedColor}</span>}
+                {t('product.color')}{selectedColor && <span className="text-text-muted"> · {selectedColor}</span>}
               </h2>
               <div className="flex flex-wrap gap-2">
                 {colors.map((color) => (
@@ -217,7 +219,7 @@ export default function ProductDetail() {
           {sizes.length > 0 && (
             <div className="mt-6">
               <h2 className="mb-3 text-sm font-medium text-text">
-                Beden{selectedSize && <span className="text-text-muted"> · {selectedSize}</span>}
+                {t('product.size')}{selectedSize && <span className="text-text-muted"> · {selectedSize}</span>}
               </h2>
               <div className="flex flex-wrap gap-2">
                 {sizes.map((size) => {
@@ -252,9 +254,9 @@ export default function ProductDetail() {
           {selectedVariant && (
             <p className="mt-4 text-sm">
               {selectedVariant.in_stock ? (
-                <span className="text-success">Stokta ({selectedVariant.stock} adet)</span>
+                <span className="text-success">{t('product.inStock', { count: selectedVariant.stock })}</span>
               ) : (
-                <span className="text-danger">Bu seçenek tükendi</span>
+                <span className="text-danger">{t('product.outOfStock')}</span>
               )}
             </p>
           )}
@@ -269,12 +271,12 @@ export default function ProductDetail() {
           >
             {added ? (
               <>
-                <Check size={18} /> Sepete Eklendi
+                <Check size={18} /> {t('product.added')}
               </>
             ) : (
               <>
                 <ShoppingBag size={18} />
-                {needsColor || needsSize ? 'Seçim yapın' : 'Sepete Ekle'}
+                {needsColor || needsSize ? t('product.selectOptions') : t('product.addToCart')}
               </>
             )}
           </motion.button>

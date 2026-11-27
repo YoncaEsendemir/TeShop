@@ -1,19 +1,21 @@
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import { fetchProducts } from '../services/api'
 import ProductGrid, { ProductGridSkeleton } from '../components/ProductGrid'
 import Seo from '../components/Seo'
 import type { SortOption } from '../types'
 
-const SORT_LABELS: Record<SortOption, string> = {
-  newest: 'En Yeni',
-  price_asc: 'Fiyat (artan)',
-  price_desc: 'Fiyat (azalan)',
-  name: 'İsim (A-Z)',
+const SORT_KEYS: Record<SortOption, string> = {
+  newest: 'products.sortNewest',
+  price_asc: 'products.sortPriceAsc',
+  price_desc: 'products.sortPriceDesc',
+  name: 'products.sortName',
 }
 
 export default function Products() {
   const { slug } = useParams()
+  const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
 
   const search = searchParams.get('search') ?? undefined
@@ -30,8 +32,8 @@ export default function Products() {
   const meta = data?.meta
 
   // Başlık
-  let heading = 'Tüm Ürünler'
-  if (search) heading = `“${search}” için sonuçlar`
+  let heading = t('products.all')
+  if (search) heading = t('products.results', { q: search })
   else if (slug) heading = products[0]?.category?.name ?? slug
 
   function setParam(key: string, value: string) {
@@ -51,15 +53,15 @@ export default function Products() {
         </h1>
 
         <label className="flex items-center gap-2 text-sm text-text-muted">
-          Sırala
+          {t('products.sort')}
           <select
             value={sort}
             onChange={(e) => setParam('sort', e.target.value)}
             className="rounded-full border border-border-subtle bg-surface px-4 py-2 text-text focus-visible:outline-2 focus-visible:outline-text"
           >
-            {(Object.keys(SORT_LABELS) as SortOption[]).map((key) => (
+            {(Object.keys(SORT_KEYS) as SortOption[]).map((key) => (
               <option key={key} value={key} className="bg-surface">
-                {SORT_LABELS[key]}
+                {t(SORT_KEYS[key])}
               </option>
             ))}
           </select>
@@ -67,13 +69,11 @@ export default function Products() {
       </div>
 
       {isError ? (
-        <p className="py-20 text-center text-text-muted">
-          Ürünler yüklenirken bir hata oluştu. Lütfen tekrar deneyin.
-        </p>
+        <p className="py-20 text-center text-text-muted">{t('products.error')}</p>
       ) : isLoading ? (
         <ProductGridSkeleton />
       ) : products.length === 0 ? (
-        <p className="py-20 text-center text-text-muted">Ürün bulunamadı.</p>
+        <p className="py-20 text-center text-text-muted">{t('products.none')}</p>
       ) : (
         <>
           <ProductGrid products={products} />
@@ -87,7 +87,7 @@ export default function Products() {
                 onClick={() => setParam('page', String(page - 1))}
                 className="rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm text-text disabled:opacity-40 hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-text"
               >
-                Önceki
+                {t('products.prev')}
               </button>
               <span className="px-3 text-sm text-text-muted">
                 {meta.current_page} / {meta.last_page}
@@ -98,7 +98,7 @@ export default function Products() {
                 onClick={() => setParam('page', String(page + 1))}
                 className="rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm text-text disabled:opacity-40 hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-text"
               >
-                Sonraki
+                {t('products.next')}
               </button>
             </div>
           )}

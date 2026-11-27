@@ -1,0 +1,78 @@
+{
+  "nav": { "all": "Tüm Ürünler", "search": "Ara…", "cartLabel": "Sepet ({{count}} ürün)" },
+  "home": {
+    "newSeason": "Yeni Sezon",
+    "title1": "Monokrom.",
+    "title2": "Zamansız.",
+    "desc": "Siyahın, grinin ve beyazın sadeliğinde tasarlanmış parçalar. Az ama öz bir gardırop için.",
+    "shopNow": "Alışverişe Başla",
+    "women": "Kadın Koleksiyonu",
+    "featured": "Öne Çıkanlar",
+    "seeAll": "Tümünü gör"
+  },
+  "product": {
+    "color": "Renk",
+    "size": "Beden",
+    "inStock": "Stokta ({{count}} adet)",
+    "outOfStock": "Bu seçenek tükendi",
+    "selectOptions": "Seçim yapın",
+    "addToCart": "Sepete Ekle",
+    "added": "Sepete Eklendi",
+    "notFound": "Ürün bulunamadı.",
+    "backToProducts": "Tüm ürünlere dön"
+  },
+  "breadcrumb": { "home": "Ana Sayfa", "products": "Ürünler" },
+  "products": {
+    "all": "Tüm Ürünler",
+    "results": "“{{q}}” için sonuçlar",
+    "sort": "Sırala",
+    "sortNewest": "En Yeni",
+    "sortPriceAsc": "Fiyat (artan)",
+    "sortPriceDesc": "Fiyat (azalan)",
+    "sortName": "İsim (A-Z)",
+    "none": "Ürün bulunamadı.",
+    "error": "Ürünler yüklenirken bir hata oluştu. Lütfen tekrar deneyin.",
+    "prev": "Önceki",
+    "next": "Sonraki"
+  },
+  "card": { "discount": "İndirim", "soldOut": "Tükendi" },
+  "cart": {
+    "title": "Sepetim",
+    "empty": "Sepetin henüz boş.",
+    "start": "Alışverişe Başla",
+    "subtotal": "Ara Toplam",
+    "checkout": "Ödemeye Geç",
+    "checkoutNote": "Ödeme adımı Faz 6'da eklenecek.",
+    "remove": "Kaldır",
+    "increase": "Artır",
+    "decrease": "Azalt",
+    "close": "Kapat"
+  },
+  "footer": {
+    "tagline": "Modern, minimal ve monokrom giyim. Özenle seçilmiş parçalar.",
+    "shopping": "Alışveriş",
+    "corporate": "Kurumsal",
+    "help": "Yardım",
+    "all": "Tüm Ürünler",
+    "women": "Kadın",
+    "men": "Erkek",
+    "privacy": "Gizlilik Politikası",
+    "kvkk": "KVKK Aydınlatma",
+    "distance": "Mesafeli Satış",
+    "returns": "İade & Cayma",
+    "shipping": "Kargo & Teslimat",
+    "contact": "İletişim",
+    "rights": "© {{year}} TeShop. Tüm hakları saklıdır."
+  },
+  "cookie": {
+    "text": "Deneyimini iyileştirmek için çerezler kullanıyoruz. Zorunlu olmayan çerezler yalnızca onayınla etkinleşir.",
+    "policy": "Çerez Politikası",
+    "accept": "Kabul Et",
+    "reject": "Reddet"
+  },
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "desc": "Aradığın sayfa taşınmış veya hiç var olmamış olabilir.",
+    "back": "Ana Sayfaya Dön"
+  }
+}

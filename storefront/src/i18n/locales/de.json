@@ -1,0 +1,78 @@
+{
+  "nav": { "all": "Alle Produkte", "search": "Suche…", "cartLabel": "Warenkorb ({{count}} Artikel)" },
+  "home": {
+    "newSeason": "Neue Saison",
+    "title1": "Monochrom.",
+    "title2": "Zeitlos.",
+    "desc": "Teile, gestaltet in der Schlichtheit von Schwarz, Grau und Weiß. Für eine kleine, aber essenzielle Garderobe.",
+    "shopNow": "Jetzt einkaufen",
+    "women": "Damenkollektion",
+    "featured": "Highlights",
+    "seeAll": "Alle ansehen"
+  },
+  "product": {
+    "color": "Farbe",
+    "size": "Größe",
+    "inStock": "Auf Lager ({{count}} übrig)",
+    "outOfStock": "Diese Option ist ausverkauft",
+    "selectOptions": "Auswahl treffen",
+    "addToCart": "In den Warenkorb",
+    "added": "Hinzugefügt",
+    "notFound": "Produkt nicht gefunden.",
+    "backToProducts": "Zurück zu allen Produkten"
+  },
+  "breadcrumb": { "home": "Startseite", "products": "Produkte" },
+  "products": {
+    "all": "Alle Produkte",
+    "results": "Ergebnisse für „{{q}}“",
+    "sort": "Sortieren",
+    "sortNewest": "Neueste",
+    "sortPriceAsc": "Preis (aufsteigend)",
+    "sortPriceDesc": "Preis (absteigend)",
+    "sortName": "Name (A-Z)",
+    "none": "Keine Produkte gefunden.",
+    "error": "Beim Laden der Produkte ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+    "prev": "Zurück",
+    "next": "Weiter"
+  },
+  "card": { "discount": "Sale", "soldOut": "Ausverkauft" },
+  "cart": {
+    "title": "Mein Warenkorb",
+    "empty": "Dein Warenkorb ist leer.",
+    "start": "Jetzt einkaufen",
+    "subtotal": "Zwischensumme",
+    "checkout": "Zur Kasse",
+    "checkoutNote": "Die Kasse wird in Phase 6 hinzugefügt.",
+    "remove": "Entfernen",
+    "increase": "Erhöhen",
+    "decrease": "Verringern",
+    "close": "Schließen"
+  },
+  "footer": {
+    "tagline": "Moderne, minimalistische und monochrome Mode. Sorgfältig ausgewählte Teile.",
+    "shopping": "Einkaufen",
+    "corporate": "Unternehmen",
+    "help": "Hilfe",
+    "all": "Alle Produkte",
+    "women": "Damen",
+    "men": "Herren",
+    "privacy": "Datenschutzerklärung",
+    "kvkk": "Datenschutz (KVKK)",
+    "distance": "Fernabsatzvertrag",
+    "returns": "Rückgabe & Widerruf",
+    "shipping": "Versand & Lieferung",
+    "contact": "Kontakt",
+    "rights": "© {{year}} TeShop. Alle Rechte vorbehalten."
+  },
+  "cookie": {
+    "text": "Wir verwenden Cookies, um dein Erlebnis zu verbessern. Nicht notwendige Cookies werden nur mit deiner Zustimmung aktiviert.",
+    "policy": "Cookie-Richtlinie",
+    "accept": "Akzeptieren",
+    "reject": "Ablehnen"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "desc": "Die gesuchte Seite wurde möglicherweise verschoben oder existiert nicht.",
+    "back": "Zurück zur Startseite"
+  }
+}

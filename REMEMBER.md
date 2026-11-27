@@ -13,7 +13,24 @@
   `docker compose exec api php artisan ...`
 
 ## 🎯 Şu an neredeyiz
-**Testler yazıldı (Faz 4 sonrası)** → Yonca arayüz testlerini yapacak → sonra **Faz 5**
+**Faz 5 — KVKK/SEO/i18n/Sentry** ✅ ÇEKİRDEK BİTTİ → Yonca arayüz/hata testleri → sonra Faz 6
+
+### Faz 5'te yapılanlar (27.11.2026)
+- **KVKK:** `CookieBanner` (zorunlu olmayan çerez varsayılan reddedilir, localStorage) +
+  7 yasal sayfa (`pages/Legal.tsx` + `data/legal.ts`): gizlilik, kvkk, cerez-politikasi,
+  mesafeli-satis, iade, kargo, iletisim. ⚠️ `[köşeli parantez]` firma bilgilerini Yonca dolduracak + hukukçu kontrolü.
+- **SEO teknik:** `public/robots.txt` + `public/sitemap.xml` (domain `example.com` yer tutucu),
+  global `OrganizationJsonLd`, ürün detayda Product+Offer JSON-LD (zaten vardı), helmet meta.
+- **i18n:** react-i18next (TR/DE/EN), `i18n/config.ts` + `locales/*.json`, `LanguageSwitcher` navbar'da,
+  TÜM storefront UI çevrildi. Dil localStorage'da (`teshop-lang`). ✅ tarayıcıda test edildi (EN'e geçiş çalışıyor).
+- **Sentry:** `lib/sentry.ts` (VITE_SENTRY_DSN varsa init). Frontend scaffold.
+- ✅ build temiz (3094 modül), 39 test (14 FE + 25 BE) geçiyor.
+
+### ⏳ Faz 5 — Yonca/insan-bağımlı kalanlar
+- **SEO skill:** Yonca'nın vereceği SEO skill → derin optimizasyon + URL dil öneki (/tr /de /en) + hreflang + prerender
+- **Sentry DSN:** Yonca hesabından → `storefront/.env` VITE_SENTRY_DSN + Laravel backend Sentry (sentry/sentry-laravel)
+- **İçerik çevirisi:** kategori/ürün adları (spatie/laravel-translatable) — şu an sadece UI çevrili, içerik TR
+- **Prod öncesi:** robots/sitemap gerçek domain, APP_DEBUG=false, CORS daralt, kod bölme (chunk >500KB)
 
 ### 🧪 TESTLER (26.11.2026) — tümü GEÇTİ ✅
 - **Backend: 25 PHPUnit feature testi** (`api/tests/Feature/`): PublicApiTest, AdminAuthTest, AdminCrudTest
@@ -122,14 +139,13 @@
 - [x] `User` modeline `HasApiTokens` trait eklendi (`app/Models/User.php`)
 - [x] `docker compose up --build` ✅ → api/storefront/mysql hepsi HTTP 200, migration'lar çalıştı
 
-## 🔜 SIRADAKİ (Faz 5 — KVKK, SEO, i18n, Test)
-1. [ ] Çerez banner (KVKK) + yasal sayfalar (/gizlilik, /kvkk, /mesafeli-satis, /iade)
-2. [ ] SEO: ⏰ Yonca'nın SEO skill'i + prerender + sitemap/robots + JSON-LD genişlet
-3. [ ] i18n (TR/DE/EN) + react-i18next + hreflang
-4. [ ] Testler (Pest backend + Vitest frontend) + Cloudflare security-audit
-5. [ ] Sentry (Laravel + React)
-- Faz 3 polish (sonra): çoklu görsel galerisi, kategori alt-filtreleri
-- Prod öncesi: CORS daralt, APP_DEBUG=false, kod bölme (chunk >500KB uyarısı)
+## 🔜 SIRADAKİ (Faz 6 — Müşteri + Ödeme + Yayın) — EN SON
+1. [ ] Müşteri üyelik/giriş (register/login) + adres yönetimi + favoriler (orders/addresses/reviews/wishlists tabloları)
+2. [ ] Checkout akışı + kargo
+3. [ ] Ödeme entegrasyonu (Yonca'nın vereceği React-uyumlu sağlayıcı; PayPal TR'de yasak)
+4. [ ] cPanel yayın (Laravel API + React build) + SSL + gerçek domain
+- Önce: Yonca'nın arayüz/hata testleri (ARAYUZ_TESTLERI.md) → bulunan hataları düzelt
+- Faz 5 insan-bağımlı kalanlar (yukarıda): SEO skill, Sentry DSN, içerik çevirisi
 
 ## 🔐 GÜVENLİK TARAMASI (26.11.2026, Faz 1+2 kodu — kaynak incelemesi)
 - [x] ✅ DÜZELTİLDİ: `User.role` fillable'dan çıkarıldı (Faz 6 register'da yetki yükseltme önlendi);
