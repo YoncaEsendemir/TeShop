@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\SettingController;
+use App\Http\Controllers\Api\V1\Admin\PasswordController as AdminPasswordController;
+use App\Http\Controllers\Api\V1\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Api\V1\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Api\V1\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Api\V1\Admin\DashboardController as AdminDashboardController;
@@ -20,6 +23,7 @@ Route::prefix('v1')->middleware('locale')->group(function () {
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{slug}', [ProductController::class, 'show']);
+    Route::get('/settings', [SettingController::class, 'show']);
 
     /*
     |----------------------------------------------------------------------
@@ -60,6 +64,12 @@ Route::prefix('v1')->middleware('locale')->group(function () {
             Route::post('orders', [AdminOrderController::class, 'store']);
             Route::get('orders/{order}', [AdminOrderController::class, 'show']);
             Route::patch('orders/{order}/status', [AdminOrderController::class, 'updateStatus']);
+
+            // Ayarlar: profil / şifre / mağaza bilgisi
+            Route::put('profile', [AdminProfileController::class, 'update']);
+            Route::put('password', [AdminPasswordController::class, 'update']);
+            Route::get('settings', [SettingController::class, 'index']);
+            Route::put('settings', [SettingController::class, 'update']);
         });
     });
 });
