@@ -13,7 +13,10 @@ class ProductImageResource extends JsonResource
         return [
             'id' => $this->id,
             'path' => $this->path,
-            'url' => Storage::disk('public')->url($this->path),
+            // Dış URL ise (örn. örnek görseller) olduğu gibi; değilse storage URL'si
+            'url' => str_starts_with($this->path, 'http')
+                ? $this->path
+                : Storage::disk('public')->url($this->path),
             'variant_id' => $this->variant_id,
             'is_primary' => $this->is_primary,
             'sort_order' => $this->sort_order,

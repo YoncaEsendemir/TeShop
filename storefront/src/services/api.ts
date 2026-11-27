@@ -13,6 +13,18 @@ const api = axios.create({
   headers: { Accept: 'application/json' },
 })
 
+// Seçili dili her isteğe ekle -> backend çok dilli içeriği o dilde döndürür
+api.interceptors.request.use((config) => {
+  let lang = 'tr'
+  try {
+    lang = localStorage.getItem('teshop-lang') ?? 'tr'
+  } catch {
+    /* yoksay */
+  }
+  config.params = { ...config.params, lang }
+  return config
+})
+
 // --- Kategoriler ---
 export async function fetchCategories(): Promise<Category[]> {
   const { data } = await api.get<ApiCollection<Category>>('/categories')

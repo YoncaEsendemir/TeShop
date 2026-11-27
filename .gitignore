@@ -52,6 +52,13 @@ desktop.ini
 .idea/
 *.swp
 
+# --- İç planlama/çalışma dokümanları (repoda yayınlanmaz; README herkese açık yüz) ---
+PROJE.md
+PROJE_HARITA.md
+REMEMBER.md
+ARAYUZ_TESTLERI.md
+ClaudeLearnCO.md
+
 # --- Claude / AI araçları (makineye özel; repoyu şişirmesin) ---
 .claude/settings.local.json
 .claude/skills/

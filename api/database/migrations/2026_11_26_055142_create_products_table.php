@@ -11,9 +11,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
-            $table->string('name');
+            $table->json('name'); // çok dilli (spatie): {"tr":..,"en":..,"de":..}
             $table->string('slug')->unique();
-            $table->text('description')->nullable();
+            $table->json('description')->nullable(); // çok dilli
             $table->decimal('base_price', 10, 2);
             $table->decimal('discount_price', 10, 2)->nullable();
             $table->boolean('is_active')->default(true);

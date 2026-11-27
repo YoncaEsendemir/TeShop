@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name'); // çok dilli (spatie/laravel-translatable): {"tr":..,"en":..,"de":..}
             $table->string('slug')->unique();
             // Alt kategori: kendi kendine referans (NULL = ana kategori)
             $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();

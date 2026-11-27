@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\V1\Admin\ProductImageController as AdminImageContro
 use App\Http\Controllers\Api\V1\Admin\ProductVariantController as AdminVariantController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->middleware('locale')->group(function () {
     /*
     |----------------------------------------------------------------------
     | Public (kimlik doğrulama gerektirmez)

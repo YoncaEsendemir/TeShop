@@ -35,9 +35,11 @@ class AdminCrudTest extends TestCase
 
         $this->postJson('/api/v1/admin/categories', ['name' => 'Ayakkabı'])
             ->assertCreated()
-            ->assertJsonPath('data.slug', 'ayakkabi');
+            ->assertJsonPath('data.slug', 'ayakkabi')
+            ->assertJsonPath('data.name', 'Ayakkabı');
 
-        $this->assertDatabaseHas('categories', ['name' => 'Ayakkabı']);
+        // name artık JSON (çok dilli) -> slug ile doğrula
+        $this->assertDatabaseHas('categories', ['slug' => 'ayakkabi']);
     }
 
     public function test_admin_can_update_and_delete_category(): void

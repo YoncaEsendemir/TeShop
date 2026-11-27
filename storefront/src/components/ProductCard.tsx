@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import type { Product } from '../types'
 import { formatPrice, imageUrl } from '../lib/utils'
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
   const reduce = useReducedMotion()
   const { t } = useTranslation()
   const [imgError, setImgError] = useState(false)
@@ -17,8 +17,10 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <motion.article
-      whileHover={reduce ? undefined : { y: -4 }}
-      transition={{ duration: 0.2 }}
+      initial={reduce ? false : { opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={reduce ? undefined : { y: -6 }}
+      transition={{ duration: 0.35, delay: Math.min(index * 0.05, 0.4) }}
       className="group"
     >
       <Link

@@ -6,19 +6,19 @@
    (örn. --color-bg -> bg-bg, text-bg; --font-display -> font-display)
    ============================================================ */
 @theme {
-  /* Renkler — monokrom koyu tema */
-  --color-bg: #0a0a0a; /* ana arka plan */
-  --color-surface: #151515; /* kart / panel */
-  --color-surface-2: #1f1f1f; /* yükseltilmiş yüzey, hover */
-  --color-border-subtle: #2a2a2a; /* ince ayraç çizgileri */
-  --color-text: #fafafa; /* ana metin */
-  --color-text-muted: #a1a1a1; /* ikincil metin */
-  --color-text-subtle: #6b6b6b; /* en silik metin */
+  /* Renkler — monokrom koyu tema (açılmış tonlar: daha fazla gri, göze yumuşak) */
+  --color-bg: #161618; /* ana arka plan — tam siyah değil, daha açık */
+  --color-surface: #202023; /* kart / panel */
+  --color-surface-2: #2b2b2f; /* yükseltilmiş yüzey, hover */
+  --color-border-subtle: #3a3a40; /* ince ayraç çizgileri — daha görünür */
+  --color-text: #f5f5f6; /* ana metin */
+  --color-text-muted: #b8b8bf; /* ikincil metin — daha okunur */
+  --color-text-subtle: #8a8a92; /* en silik metin */
   --color-primary: #ffffff; /* ana buton zemini */
-  --color-primary-text: #0a0a0a; /* ana buton yazısı */
-  --color-accent: #e5e5e5; /* hover / vurgu */
-  --color-success: #22c55e; /* stokta var */
-  --color-danger: #ef4444; /* stok yok / hata */
+  --color-primary-text: #161618; /* ana buton yazısı */
+  --color-accent: #e8e8ea; /* hover / vurgu */
+  --color-success: #4ade80; /* stokta var */
+  --color-danger: #f87171; /* stok yok / hata */
 
   /* Tipografi */
   --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
@@ -39,6 +39,13 @@
 
   body {
     background-color: var(--color-bg);
+    /* Üstte çok hafif açılma -> düz siyah yerine derinlik (monokrom) */
+    background-image: radial-gradient(
+      1200px 600px at 50% -10%,
+      rgba(255, 255, 255, 0.04),
+      transparent 70%
+    );
+    background-attachment: fixed;
     color: var(--color-text);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
