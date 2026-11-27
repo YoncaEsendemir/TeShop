@@ -258,4 +258,35 @@ export async function updateOrderStatus(id: number, status: OrderStatus): Promis
   return data.data
 }
 
+// --- Ayarlar ---
+export async function updateProfile(input: { name: string; email: string }): Promise<AdminUser> {
+  const { data } = await adminApi.put<AdminUser>('/admin/profile', input)
+  return data
+}
+
+export async function updatePassword(input: {
+  current_password: string
+  new_password: string
+  new_password_confirmation: string
+}): Promise<void> {
+  await adminApi.put('/admin/password', input)
+}
+
+export interface StoreSettings {
+  store_name: string
+  store_email: string
+  store_phone: string
+  store_address: string
+}
+
+export async function fetchAdminSettings(): Promise<StoreSettings> {
+  const { data } = await adminApi.get<StoreSettings>('/admin/settings')
+  return data
+}
+
+export async function updateSettings(input: StoreSettings): Promise<StoreSettings> {
+  const { data } = await adminApi.put<StoreSettings>('/admin/settings', input)
+  return data
+}
+
 export default adminApi

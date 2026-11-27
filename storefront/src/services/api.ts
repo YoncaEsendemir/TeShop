@@ -53,4 +53,17 @@ export async function fetchProduct(slug: string): Promise<Product> {
   return data.data
 }
 
+// --- Mağaza ayarları (public) ---
+export interface StoreSettings {
+  store_name: string
+  store_email: string
+  store_phone: string
+  store_address: string
+}
+
+export async function fetchSettings(): Promise<StoreSettings> {
+  const { data } = await api.get<StoreSettings>('/settings')
+  return data
+}
+
 export default api

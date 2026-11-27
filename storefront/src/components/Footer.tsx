@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useQuery } from '@tanstack/react-query'
+import { fetchSettings } from '../services/api'
 
 export default function Footer() {
   const { t } = useTranslation()
   const year = new Date().getFullYear()
+  const { data: store } = useQuery({ queryKey: ['settings'], queryFn: fetchSettings })
 
   return (
     <footer className="mt-24 border-t border-border-subtle bg-surface">
@@ -40,6 +43,11 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-text-muted">
               <li><Link to="/kargo" className="hover:text-text">{t('footer.shipping')}</Link></li>
               <li><Link to="/iletisim" className="hover:text-text">{t('footer.contact')}</Link></li>
+              {store?.store_email && (
+                <li><a href={`mailto:${store.store_email}`} className="hover:text-text">{store.store_email}</a></li>
+              )}
+              {store?.store_phone && <li className="text-text-subtle">{store.store_phone}</li>}
+              {store?.store_address && <li className="text-text-subtle">{store.store_address}</li>}
             </ul>
           </nav>
         </div>

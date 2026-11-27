@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate, Navigate, Link } from 'react-router-dom'
-import { LayoutDashboard, FolderTree, Package, ShoppingCart, LogOut, Store } from 'lucide-react'
+import { LayoutDashboard, FolderTree, Package, ShoppingCart, Settings as SettingsIcon, LogOut, Store } from 'lucide-react'
 import { useAuth } from '../store/auth'
 import { adminLogout } from '../services/adminApi'
 import { cn } from '../lib/utils'
@@ -10,6 +10,7 @@ const NAV = [
   { to: '/admin/kategoriler', label: 'Kategoriler', icon: FolderTree, end: false },
   { to: '/admin/urunler', label: 'Ürünler', icon: Package, end: false },
   { to: '/admin/siparisler', label: 'Siparişler', icon: ShoppingCart, end: false },
+  { to: '/admin/ayarlar', label: 'Ayarlar', icon: SettingsIcon, end: false },
 ]
 
 export default function AdminLayout() {
