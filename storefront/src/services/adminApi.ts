@@ -172,4 +172,65 @@ export async function deleteImage(imageId: number): Promise<void> {
   await adminApi.delete(`/admin/images/${imageId}`)
 }
 
+// --- Siparişler ---
+export const ORDER_STATUSES = ['pending', 'paid', 'shipped', 'delivered', 'cancelled'] as const
+export type OrderStatus = (typeof ORDER_STATUSES)[number]
+
+export interface AdminOrderItem {
+  id: number
+  product_id: number | null
+  variant_id: number | null
+  product_name: string
+  unit_price: string
+  qty: number
+  line_total: string
+}
+
+export interface AdminOrder {
+  id: number
+  order_number: string
+  customer_name: string
+  customer_email: string
+  status: OrderStatus
+  subtotal: string
+  shipping_fee: string
+  total: string
+  placed_at: string | null
+  items_count?: number
+  items?: AdminOrderItem[]
+}
+
+export async function fetchOrders(params: { status?: string; page?: number } = {}) {
+  const { data } = await adminApi.get<Paginated<AdminOrder>>('/admin/orders', { params })
+  return data
+}
+
+export async function fetchOrder(id: number): Promise<AdminOrder> {
+  const { data } = await adminApi.get<ApiItem<AdminOrder>>(`/admin/orders/${id}`)
+  return data.data
+}
+
+export interface OrderItemInput {
+  product_id: number
+  variant_id?: number | null
+  qty: number
+}
+
+export interface CreateOrderInput {
+  customer_name: string
+  customer_email: string
+  shipping_fee?: number
+  items: OrderItemInput[]
+}
+
+export async function createOrder(input: CreateOrderInput): Promise<AdminOrder> {
+  const { data } = await adminApi.post<ApiItem<AdminOrder>>('/admin/orders', input)
+  return data.data
+}
+
+export async function updateOrderStatus(id: number, status: OrderStatus): Promise<AdminOrder> {
+  const { data } = await adminApi.patch<ApiItem<AdminOrder>>(`/admin/orders/${id}/status`, { status })
+  return data.data
+}
+
 export default adminApi

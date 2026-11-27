@@ -11,6 +11,8 @@ import Dashboard from './pages/admin/Dashboard'
 import AdminCategories from './pages/admin/AdminCategories'
 import AdminProducts from './pages/admin/AdminProducts'
 import AdminProductEdit from './pages/admin/AdminProductEdit'
+import AdminOrders from './pages/admin/AdminOrders'
+import AdminOrderCreate from './pages/admin/AdminOrderCreate'
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
         <Route path="urunler" element={<AdminProducts />} />
         <Route path="urunler/yeni" element={<AdminProductEdit />} />
         <Route path="urunler/:id/duzenle" element={<AdminProductEdit />} />
+        <Route path="siparisler" element={<AdminOrders />} />
+        <Route path="siparisler/yeni" element={<AdminOrderCreate />} />
       </Route>
     </Routes>
   )
