@@ -1,0 +1,27 @@
+# TeShop storefront (React SPA) — Apache / cPanel
+# 1) Sayfa yolları: /urunler, /hesabim gibi adresler yenilenince 404 olmasın diye
+#    gerçek dosya/klasör olmayan her istek index.html'e yönlendirilir (React Router halleder).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# 2) Sıkıştırma (gzip) — performans için (sayfa çok daha hızlı yüklenir)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# 3) Önbellek — JS/CSS/görseller (hash'li dosyalar) uzun süre cache'lenir
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
