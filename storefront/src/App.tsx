@@ -8,6 +8,7 @@ import Legal from './pages/Legal'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Account from './pages/Account'
+import Wishlist from './pages/Wishlist'
 import NotFound from './pages/NotFound'
 import AdminLogin from './pages/admin/Login'
 import Dashboard from './pages/admin/Dashboard'
@@ -32,6 +33,7 @@ function App() {
         <Route path="/kayit" element={<Register />} />
         <Route path="/giris" element={<Login />} />
         <Route path="/hesabim" element={<Account />} />
+        <Route path="/favorilerim" element={<Wishlist />} />
 
         {/* Yasal sayfalar (KVKK) */}
         <Route path="/gizlilik" element={<Legal slug="gizlilik" />} />

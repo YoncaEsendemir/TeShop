@@ -20,7 +20,7 @@
     "wishlist": "Favorites",
     "addrTitle": "Label (Home/Work)", "addrName": "Full name", "addrPhone": "Phone", "addrLine": "Address",
     "addrCity": "City", "addrPostal": "Postal code", "addrAdd": "Add Address", "addrSave": "Save",
-    "addrNone": "No saved address.", "addrDelete": "Delete", "ordersNone": "No orders yet."
+    "addrNone": "No saved address.", "addrDelete": "Delete", "ordersNone": "No orders yet.", "wishlistNone": "Your favorites list is empty."
   },
   "nav": { "all": "All Products", "search": "Search…", "cartLabel": "Cart ({{count}} items)" },
   "home": {

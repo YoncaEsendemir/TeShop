@@ -20,7 +20,7 @@
     "wishlist": "Favoriten",
     "addrTitle": "Bezeichnung (Zuhause/Arbeit)", "addrName": "Vollständiger Name", "addrPhone": "Telefon", "addrLine": "Adresse",
     "addrCity": "Stadt", "addrPostal": "PLZ", "addrAdd": "Adresse hinzufügen", "addrSave": "Speichern",
-    "addrNone": "Keine gespeicherte Adresse.", "addrDelete": "Löschen", "ordersNone": "Noch keine Bestellungen."
+    "addrNone": "Keine gespeicherte Adresse.", "addrDelete": "Löschen", "ordersNone": "Noch keine Bestellungen.", "wishlistNone": "Deine Favoritenliste ist leer."
   },
   "nav": { "all": "Alle Produkte", "search": "Suche…", "cartLabel": "Warenkorb ({{count}} Artikel)" },
   "home": {

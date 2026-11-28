@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useCustomerAuth, type Customer } from '../store/customerAuth'
+import type { Product } from '../types'
 
 const customerApi = axios.create({
   baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api/v1',
@@ -100,6 +101,17 @@ export interface MyOrder {
 export async function fetchMyOrders(): Promise<MyOrder[]> {
   const { data } = await customerApi.get<{ data: MyOrder[] }>('/my-orders')
   return data.data
+}
+
+// --- Favoriler ---
+export async function fetchWishlist(): Promise<Product[]> {
+  const { data } = await customerApi.get<{ data: Product[] }>('/wishlist')
+  return data.data
+}
+
+export async function toggleWishlist(productId: number): Promise<boolean> {
+  const { data } = await customerApi.post<{ in_wishlist: boolean }>('/wishlist/toggle', { product_id: productId })
+  return data.in_wishlist
 }
 
 export default customerApi

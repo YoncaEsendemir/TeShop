@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Menu, Search, ShoppingBag, User, X } from 'lucide-react'
+import { Heart, Menu, Search, ShoppingBag, User, X } from 'lucide-react'
 import { fetchCategories } from '../services/api'
 import { useCart } from '../store/cart'
 import { useCustomerAuth } from '../store/customerAuth'
@@ -97,6 +97,16 @@ export default function Navbar() {
           <ThemeToggle />
 
           <LanguageSwitcher />
+
+          {customer && (
+            <Link
+              to="/favorilerim"
+              className="rounded-full p-2 text-text-muted hover:text-text focus-visible:outline-2 focus-visible:outline-text"
+              aria-label={t('auth.wishlist')}
+            >
+              <Heart size={20} />
+            </Link>
+          )}
 
           <Link
             to={customer ? '/hesabim' : '/giris'}

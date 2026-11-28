@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\Customer\AddressController as CustomerAddressCon
 use App\Http\Controllers\Api\V1\Customer\AuthController as CustomerAuthController;
 use App\Http\Controllers\Api\V1\Customer\EmailVerificationController;
 use App\Http\Controllers\Api\V1\Customer\OrderController as CustomerOrderController;
+use App\Http\Controllers\Api\V1\Customer\WishlistController as CustomerWishlistController;
 use App\Http\Controllers\Api\V1\Admin\PasswordController as AdminPasswordController;
 use App\Http\Controllers\Api\V1\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Api\V1\Admin\AuthController as AdminAuthController;
@@ -55,6 +56,10 @@ Route::prefix('v1')->middleware('locale')->group(function () {
         // Sipariş geçmişi (owner-scoped)
         Route::get('/my-orders', [CustomerOrderController::class, 'index']);
         Route::get('/my-orders/{id}', [CustomerOrderController::class, 'show']);
+
+        // Favoriler
+        Route::get('/wishlist', [CustomerWishlistController::class, 'index']);
+        Route::post('/wishlist/toggle', [CustomerWishlistController::class, 'toggle']);
     });
 
     /*

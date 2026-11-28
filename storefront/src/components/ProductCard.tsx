@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { Product } from '../types'
 import { formatPrice, imageUrl } from '../lib/utils'
+import FavoriteButton from './FavoriteButton'
 
 export default function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
   const reduce = useReducedMotion()
@@ -45,6 +46,9 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
               </span>
             </div>
           )}
+
+          {/* Favori */}
+          <FavoriteButton productId={product.id} className="absolute right-3 top-3" />
 
           {/* Rozetler */}
           <div className="absolute left-3 top-3 flex flex-col gap-2">
