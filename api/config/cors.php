@@ -13,7 +13,8 @@ return [
         'http://localhost:5173',
     ]))),
 
-    'allowed_origins_patterns' => [],
+    // Dev: her localhost portu (prod domaini FRONTEND_URL ile; uzak saldırgan localhost olamaz)
+    'allowed_origins_patterns' => ['/^http:\/\/localhost:\d+$/'],
 
     'allowed_headers' => ['*'],
 

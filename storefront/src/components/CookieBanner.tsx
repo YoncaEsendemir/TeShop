@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const STORAGE_KEY = 'teshop-cookie-consent'
 
@@ -13,7 +13,6 @@ type Consent = 'accepted' | 'rejected'
  * Seçim localStorage'da saklanır.
  */
 export default function CookieBanner() {
-  const reduce = useReducedMotion()
   const { t } = useTranslation()
   const [visible, setVisible] = useState(false)
 
@@ -39,9 +38,9 @@ export default function CookieBanner() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           className="fixed inset-x-0 bottom-0 z-50 p-4"
           role="dialog"
