@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\Customer\AddressController as CustomerAddressController;
 use App\Http\Controllers\Api\V1\Customer\AuthController as CustomerAuthController;
 use App\Http\Controllers\Api\V1\Customer\EmailVerificationController;
+use App\Http\Controllers\Api\V1\Customer\OrderController as CustomerOrderController;
 use App\Http\Controllers\Api\V1\Admin\PasswordController as AdminPasswordController;
 use App\Http\Controllers\Api\V1\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Api\V1\Admin\AuthController as AdminAuthController;
@@ -50,6 +51,10 @@ Route::prefix('v1')->middleware('locale')->group(function () {
         Route::post('/addresses', [CustomerAddressController::class, 'store']);
         Route::put('/addresses/{id}', [CustomerAddressController::class, 'update']);
         Route::delete('/addresses/{id}', [CustomerAddressController::class, 'destroy']);
+
+        // Sipariş geçmişi (owner-scoped)
+        Route::get('/my-orders', [CustomerOrderController::class, 'index']);
+        Route::get('/my-orders/{id}', [CustomerOrderController::class, 'show']);
     });
 
     /*

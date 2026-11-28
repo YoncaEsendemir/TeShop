@@ -87,4 +87,19 @@ export async function deleteAddress(id: number): Promise<void> {
   await customerApi.delete(`/addresses/${id}`)
 }
 
+// --- Sipariş geçmişi ---
+export interface MyOrder {
+  id: number
+  order_number: string
+  status: string
+  total: string
+  placed_at: string | null
+  items_count?: number
+}
+
+export async function fetchMyOrders(): Promise<MyOrder[]> {
+  const { data } = await customerApi.get<{ data: MyOrder[] }>('/my-orders')
+  return data.data
+}
+
 export default customerApi

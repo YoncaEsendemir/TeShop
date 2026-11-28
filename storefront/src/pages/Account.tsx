@@ -9,9 +9,11 @@ import {
   fetchAddresses,
   createAddress,
   deleteAddress,
+  fetchMyOrders,
   type AddressInput,
 } from '../services/customerApi'
 import { useCustomerAuth } from '../store/customerAuth'
+import { formatPrice } from '../lib/utils'
 import Seo from '../components/Seo'
 
 const EMPTY: AddressInput = { title: '', full_name: '', phone: '', line1: '', city: '', postal_code: '' }
@@ -29,6 +31,12 @@ export default function Account() {
   const { data: addresses = [] } = useQuery({
     queryKey: ['customer', 'addresses'],
     queryFn: fetchAddresses,
+    enabled: !!token,
+  })
+
+  const { data: orders = [] } = useQuery({
+    queryKey: ['customer', 'orders'],
+    queryFn: fetchMyOrders,
     enabled: !!token,
   })
 
@@ -75,6 +83,29 @@ export default function Account() {
         <h2 className="mb-3 font-medium text-text">{t('auth.profile')}</h2>
         <p className="text-sm text-text-muted">{user?.name}</p>
         <p className="text-sm text-text-muted">{user?.email}</p>
+      </div>
+
+      {/* Sipariş geçmişi */}
+      <div className="mb-6 rounded-xl border border-border-subtle bg-surface p-5">
+        <h2 className="mb-4 font-medium text-text">{t('auth.myOrders')}</h2>
+        {orders.length === 0 ? (
+          <p className="text-sm text-text-subtle">{t('auth.ordersNone')}</p>
+        ) : (
+          <ul className="divide-y divide-border-subtle text-sm">
+            {orders.map((o) => (
+              <li key={o.id} className="flex items-center justify-between py-2.5">
+                <div>
+                  <span className="font-mono text-xs text-text-muted">{o.order_number}</span>
+                  <span className="ml-3 text-text-subtle">{o.placed_at ? new Date(o.placed_at).toLocaleDateString('tr-TR') : ''}</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-text-muted">{t(`admin.status.${o.status}`, o.status)}</span>
+                  <span className="font-medium text-text">{formatPrice(o.total)}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* Adresler */}
