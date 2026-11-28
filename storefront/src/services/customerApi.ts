@@ -55,4 +55,36 @@ export async function resendVerification() {
   await customerApi.post('/email/verification-notification')
 }
 
+// --- Adresler ---
+export interface Address {
+  id: number
+  title: string
+  full_name: string
+  phone: string
+  line1: string
+  city: string
+  postal_code: string | null
+  is_default: boolean
+}
+export type AddressInput = Omit<Address, 'id' | 'is_default'> & { is_default?: boolean }
+
+export async function fetchAddresses(): Promise<Address[]> {
+  const { data } = await customerApi.get<{ data: Address[] }>('/addresses')
+  return data.data
+}
+
+export async function createAddress(input: AddressInput): Promise<Address> {
+  const { data } = await customerApi.post<{ data: Address }>('/addresses', input)
+  return data.data
+}
+
+export async function updateAddress(id: number, input: AddressInput): Promise<Address> {
+  const { data } = await customerApi.put<{ data: Address }>(`/addresses/${id}`, input)
+  return data.data
+}
+
+export async function deleteAddress(id: number): Promise<void> {
+  await customerApi.delete(`/addresses/${id}`)
+}
+
 export default customerApi

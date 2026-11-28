@@ -17,7 +17,10 @@
     "notVerifiedBanner": "Your email is not verified. Verify it to place orders.",
     "verifiedOk": "Your email is verified.", "verifiedFail": "Verification link is invalid.",
     "account": "My Account", "profile": "Profile", "myOrders": "My Orders", "myAddresses": "My Addresses",
-    "wishlist": "Favorites"
+    "wishlist": "Favorites",
+    "addrTitle": "Label (Home/Work)", "addrName": "Full name", "addrPhone": "Phone", "addrLine": "Address",
+    "addrCity": "City", "addrPostal": "Postal code", "addrAdd": "Add Address", "addrSave": "Save",
+    "addrNone": "No saved address.", "addrDelete": "Delete", "ordersNone": "No orders yet."
   },
   "nav": { "all": "All Products", "search": "Search…", "cartLabel": "Cart ({{count}} items)" },
   "home": {

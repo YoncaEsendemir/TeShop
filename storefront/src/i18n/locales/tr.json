@@ -17,7 +17,10 @@
     "notVerifiedBanner": "E-postan doğrulanmadı. Sipariş vermek için doğrula.",
     "verifiedOk": "E-postan doğrulandı.", "verifiedFail": "Doğrulama bağlantısı geçersiz.",
     "account": "Hesabım", "profile": "Profil", "myOrders": "Siparişlerim", "myAddresses": "Adreslerim",
-    "wishlist": "Favorilerim"
+    "wishlist": "Favorilerim",
+    "addrTitle": "Başlık (Ev/İş)", "addrName": "Ad Soyad", "addrPhone": "Telefon", "addrLine": "Adres",
+    "addrCity": "Şehir", "addrPostal": "Posta Kodu", "addrAdd": "Adres Ekle", "addrSave": "Kaydet",
+    "addrNone": "Kayıtlı adres yok.", "addrDelete": "Sil", "ordersNone": "Henüz siparişin yok."
   },
   "nav": { "all": "Tüm Ürünler", "search": "Ara…", "cartLabel": "Sepet ({{count}} ürün)" },
   "home": {

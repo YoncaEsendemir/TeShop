@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\SettingController;
+use App\Http\Controllers\Api\V1\Customer\AddressController as CustomerAddressController;
 use App\Http\Controllers\Api\V1\Customer\AuthController as CustomerAuthController;
 use App\Http\Controllers\Api\V1\Customer\EmailVerificationController;
 use App\Http\Controllers\Api\V1\Admin\PasswordController as AdminPasswordController;
@@ -43,6 +44,12 @@ Route::prefix('v1')->middleware('locale')->group(function () {
         Route::get('/me', [CustomerAuthController::class, 'me']);
         Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])
             ->middleware('throttle:6,1');
+
+        // Adres defteri (owner-scoped)
+        Route::get('/addresses', [CustomerAddressController::class, 'index']);
+        Route::post('/addresses', [CustomerAddressController::class, 'store']);
+        Route::put('/addresses/{id}', [CustomerAddressController::class, 'update']);
+        Route::delete('/addresses/{id}', [CustomerAddressController::class, 'destroy']);
     });
 
     /*

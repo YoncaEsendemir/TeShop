@@ -17,7 +17,10 @@
     "notVerifiedBanner": "Deine E-Mail ist nicht bestätigt. Bestätige sie, um zu bestellen.",
     "verifiedOk": "Deine E-Mail ist bestätigt.", "verifiedFail": "Bestätigungslink ist ungültig.",
     "account": "Mein Konto", "profile": "Profil", "myOrders": "Meine Bestellungen", "myAddresses": "Meine Adressen",
-    "wishlist": "Favoriten"
+    "wishlist": "Favoriten",
+    "addrTitle": "Bezeichnung (Zuhause/Arbeit)", "addrName": "Vollständiger Name", "addrPhone": "Telefon", "addrLine": "Adresse",
+    "addrCity": "Stadt", "addrPostal": "PLZ", "addrAdd": "Adresse hinzufügen", "addrSave": "Speichern",
+    "addrNone": "Keine gespeicherte Adresse.", "addrDelete": "Löschen", "ordersNone": "Noch keine Bestellungen."
   },
   "nav": { "all": "Alle Produkte", "search": "Suche…", "cartLabel": "Warenkorb ({{count}} Artikel)" },
   "home": {
