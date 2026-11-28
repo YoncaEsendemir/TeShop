@@ -5,6 +5,9 @@ import Home from './pages/Home'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Legal from './pages/Legal'
+import Register from './pages/Register'
+import Login from './pages/Login'
+import Account from './pages/Account'
 import NotFound from './pages/NotFound'
 import AdminLogin from './pages/admin/Login'
 import Dashboard from './pages/admin/Dashboard'
@@ -24,6 +27,11 @@ function App() {
         <Route path="/urunler" element={<Products />} />
         <Route path="/kategori/:slug" element={<Products />} />
         <Route path="/urun/:slug" element={<ProductDetail />} />
+
+        {/* Müşteri hesabı */}
+        <Route path="/kayit" element={<Register />} />
+        <Route path="/giris" element={<Login />} />
+        <Route path="/hesabim" element={<Account />} />
 
         {/* Yasal sayfalar (KVKK) */}
         <Route path="/gizlilik" element={<Legal slug="gizlilik" />} />

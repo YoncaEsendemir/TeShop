@@ -3,9 +3,10 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Menu, Search, ShoppingBag, X } from 'lucide-react'
+import { Menu, Search, ShoppingBag, User, X } from 'lucide-react'
 import { fetchCategories } from '../services/api'
 import { useCart } from '../store/cart'
+import { useCustomerAuth } from '../store/customerAuth'
 import { cn } from '../lib/utils'
 import LanguageSwitcher from './LanguageSwitcher'
 import ThemeToggle from './ThemeToggle'
@@ -19,6 +20,7 @@ export default function Navbar() {
 
   const totalItems = useCart((s) => s.totalItems())
   const openCart = useCart((s) => s.openCart)
+  const customer = useCustomerAuth((s) => s.user)
 
   const { data: categories = [] } = useQuery({
     queryKey: ['categories'],
@@ -95,6 +97,14 @@ export default function Navbar() {
           <ThemeToggle />
 
           <LanguageSwitcher />
+
+          <Link
+            to={customer ? '/hesabim' : '/giris'}
+            className="rounded-full p-2 text-text-muted hover:text-text focus-visible:outline-2 focus-visible:outline-text"
+            aria-label={t('auth.account')}
+          >
+            <User size={20} />
+          </Link>
 
           <button
             type="button"

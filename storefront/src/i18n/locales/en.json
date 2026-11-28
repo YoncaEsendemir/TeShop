@@ -5,6 +5,20 @@
     "secure": "Secure checkout & easy returns"
   },
   "theme": { "toggle": "Toggle theme", "label": "Theme", "light": "Light", "dark": "Dark", "system": "System" },
+  "auth": {
+    "login": "Sign In", "register": "Sign Up", "logout": "Log out",
+    "loginTitle": "Sign In", "registerTitle": "Create Account",
+    "name": "Full Name", "email": "Email", "password": "Password", "passwordConfirm": "Password (repeat)",
+    "haveAccount": "Already have an account?", "noAccount": "No account yet?",
+    "errLogin": "Invalid credentials.", "errRegister": "Registration failed. Check the fields.",
+    "submitting": "Submitting…",
+    "verifyTitle": "Verify your email", "verifyText": "We sent a verification link to {{email}}. Please check your inbox.",
+    "resend": "Resend", "resendSent": "Verification email sent.",
+    "notVerifiedBanner": "Your email is not verified. Verify it to place orders.",
+    "verifiedOk": "Your email is verified.", "verifiedFail": "Verification link is invalid.",
+    "account": "My Account", "profile": "Profile", "myOrders": "My Orders", "myAddresses": "My Addresses",
+    "wishlist": "Favorites"
+  },
   "nav": { "all": "All Products", "search": "Search…", "cartLabel": "Cart ({{count}} items)" },
   "home": {
     "newSeason": "New Season",

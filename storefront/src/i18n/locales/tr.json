@@ -5,6 +5,20 @@
     "secure": "Güvenli ödeme & kolay iade"
   },
   "theme": { "toggle": "Tema değiştir", "label": "Tema", "light": "Açık", "dark": "Koyu", "system": "Sistem" },
+  "auth": {
+    "login": "Giriş Yap", "register": "Kayıt Ol", "logout": "Çıkış",
+    "loginTitle": "Giriş Yap", "registerTitle": "Hesap Oluştur",
+    "name": "Ad Soyad", "email": "E-posta", "password": "Şifre", "passwordConfirm": "Şifre (tekrar)",
+    "haveAccount": "Zaten hesabın var mı?", "noAccount": "Hesabın yok mu?",
+    "errLogin": "Giriş bilgileri hatalı.", "errRegister": "Kayıt başarısız. Alanları kontrol et.",
+    "submitting": "Gönderiliyor…",
+    "verifyTitle": "E-postanı doğrula", "verifyText": "{{email}} adresine doğrulama bağlantısı gönderdik. Gelen kutunu kontrol et.",
+    "resend": "Tekrar gönder", "resendSent": "Doğrulama e-postası gönderildi.",
+    "notVerifiedBanner": "E-postan doğrulanmadı. Sipariş vermek için doğrula.",
+    "verifiedOk": "E-postan doğrulandı.", "verifiedFail": "Doğrulama bağlantısı geçersiz.",
+    "account": "Hesabım", "profile": "Profil", "myOrders": "Siparişlerim", "myAddresses": "Adreslerim",
+    "wishlist": "Favorilerim"
+  },
   "nav": { "all": "Tüm Ürünler", "search": "Ara…", "cartLabel": "Sepet ({{count}} ürün)" },
   "home": {
     "newSeason": "Yeni Sezon",

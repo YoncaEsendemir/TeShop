@@ -5,6 +5,20 @@
     "secure": "Sicheres Bezahlen & einfache Rückgabe"
   },
   "theme": { "toggle": "Thema wechseln", "label": "Thema", "light": "Hell", "dark": "Dunkel", "system": "System" },
+  "auth": {
+    "login": "Anmelden", "register": "Registrieren", "logout": "Abmelden",
+    "loginTitle": "Anmelden", "registerTitle": "Konto erstellen",
+    "name": "Vollständiger Name", "email": "E-Mail", "password": "Passwort", "passwordConfirm": "Passwort (wdh.)",
+    "haveAccount": "Schon ein Konto?", "noAccount": "Noch kein Konto?",
+    "errLogin": "Ungültige Anmeldedaten.", "errRegister": "Registrierung fehlgeschlagen. Felder prüfen.",
+    "submitting": "Senden…",
+    "verifyTitle": "E-Mail bestätigen", "verifyText": "Wir haben einen Bestätigungslink an {{email}} gesendet. Bitte prüfe dein Postfach.",
+    "resend": "Erneut senden", "resendSent": "Bestätigungs-E-Mail gesendet.",
+    "notVerifiedBanner": "Deine E-Mail ist nicht bestätigt. Bestätige sie, um zu bestellen.",
+    "verifiedOk": "Deine E-Mail ist bestätigt.", "verifiedFail": "Bestätigungslink ist ungültig.",
+    "account": "Mein Konto", "profile": "Profil", "myOrders": "Meine Bestellungen", "myAddresses": "Meine Adressen",
+    "wishlist": "Favoriten"
+  },
   "nav": { "all": "Alle Produkte", "search": "Suche…", "cartLabel": "Warenkorb ({{count}} Artikel)" },
   "home": {
     "newSeason": "Neue Saison",

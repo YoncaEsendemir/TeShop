@@ -1,0 +1,58 @@
+import axios from 'axios'
+import { useCustomerAuth, type Customer } from '../store/customerAuth'
+
+const customerApi = axios.create({
+  baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api/v1',
+  headers: { Accept: 'application/json' },
+})
+
+customerApi.interceptors.request.use((config) => {
+  const token = useCustomerAuth.getState().token
+  if (token) config.headers.Authorization = `Bearer ${token}`
+  let lang = 'tr'
+  try {
+    lang = localStorage.getItem('teshop-lang') ?? 'tr'
+  } catch {
+    /* yoksay */
+  }
+  config.params = { ...config.params, lang }
+  return config
+})
+
+customerApi.interceptors.response.use(
+  (res) => res,
+  (error) => {
+    if (error.response?.status === 401) useCustomerAuth.getState().logout()
+    return Promise.reject(error)
+  },
+)
+
+interface AuthResponse {
+  token: string
+  user: Customer
+}
+
+export async function register(input: { name: string; email: string; password: string; password_confirmation: string }) {
+  const { data } = await customerApi.post<AuthResponse>('/register', input)
+  return data
+}
+
+export async function login(email: string, password: string) {
+  const { data } = await customerApi.post<AuthResponse>('/login', { email, password })
+  return data
+}
+
+export async function logout() {
+  await customerApi.post('/logout')
+}
+
+export async function fetchMe(): Promise<Customer> {
+  const { data } = await customerApi.get<Customer>('/me')
+  return data
+}
+
+export async function resendVerification() {
+  await customerApi.post('/email/verification-notification')
+}
+
+export default customerApi
