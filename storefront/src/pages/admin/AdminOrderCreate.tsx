@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { Plus, Trash2 } from 'lucide-react'
 import { adminProducts, adminProduct, createOrder } from '../../services/adminApi'
@@ -22,6 +23,7 @@ function priceOf(base: string, discount: string | null, variantPrice: string | n
 
 export default function AdminOrderCreate() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [shipping, setShipping] = useState('0')
@@ -71,14 +73,14 @@ export default function AdminOrderCreate() {
         items: lines.map((l) => ({ product_id: l.product_id, variant_id: l.variant_id, qty: l.qty })),
       }),
     onSuccess: () => navigate('/admin/siparisler'),
-    onError: () => setError('Sipariş oluşturulamadı. Alanları kontrol edin.'),
+    onError: () => setError(t('admin.orderNew.errFailed')),
   })
 
   function submit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
-    if (!name.trim() || !email.trim()) return setError('Müşteri adı ve e-posta zorunlu.')
-    if (lines.length === 0) return setError('En az bir ürün ekleyin.')
+    if (!name.trim() || !email.trim()) return setError(t('admin.orderNew.errRequired'))
+    if (lines.length === 0) return setError(t('admin.orderNew.errItems'))
     createMutation.mutate()
   }
 
@@ -86,42 +88,42 @@ export default function AdminOrderCreate() {
 
   return (
     <div className="max-w-3xl">
-      <Seo title="Yeni Sipariş" />
-      <h1 className="mb-6 font-display text-2xl font-bold text-text">Yeni Sipariş</h1>
+      <Seo title={t('admin.orderNew.title')} />
+      <h1 className="mb-6 font-display text-2xl font-bold text-text">{t('admin.orderNew.title')}</h1>
 
       <form onSubmit={submit} className="space-y-6">
         {/* Müşteri */}
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm text-text-muted">Müşteri adı</label>
+            <label className="mb-1 block text-sm text-text-muted">{t('admin.orderNew.customerName')}</label>
             <input value={name} onChange={(e) => setName(e.target.value)} className={input} />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-text-muted">E-posta</label>
+            <label className="mb-1 block text-sm text-text-muted">{t('admin.orderNew.email')}</label>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={input} />
           </div>
         </div>
 
         {/* Ürün ekleme */}
         <div className="rounded-xl border border-border-subtle bg-surface p-4">
-          <h2 className="mb-3 font-medium text-text">Ürün ekle</h2>
+          <h2 className="mb-3 font-medium text-text">{t('admin.orderNew.addProduct')}</h2>
           <div className="grid gap-3 sm:grid-cols-[2fr_1.5fr_auto_auto]">
-            <select value={selProduct} onChange={(e) => { setSelProduct(Number(e.target.value) || ''); setSelVariant('') }} className={input} aria-label="Ürün">
-              <option value="">Ürün seç…</option>
+            <select value={selProduct} onChange={(e) => { setSelProduct(Number(e.target.value) || ''); setSelVariant('') }} className={input} aria-label={t('admin.orderNew.product')}>
+              <option value="">{t('admin.orderNew.selectProduct')}</option>
               {products.map((p) => (
                 <option key={p.id} value={p.id}>{p.name}</option>
               ))}
             </select>
-            <select value={selVariant} onChange={(e) => setSelVariant(Number(e.target.value) || '')} className={input} aria-label="Varyant" disabled={!selProduct}>
-              <option value="">Varyant (ops.)</option>
+            <select value={selVariant} onChange={(e) => setSelVariant(Number(e.target.value) || '')} className={input} aria-label={t('admin.orderNew.variantOpt')} disabled={!selProduct}>
+              <option value="">{t('admin.orderNew.variantOpt')}</option>
               {variants.map((v) => (
                 <option key={v.id} value={v.id}>{[v.size, v.color].filter(Boolean).join(' / ') || v.sku}</option>
               ))}
             </select>
-            <input type="number" min={1} value={qty} onChange={(e) => setQty(Math.max(1, Number(e.target.value)))} className={input + ' w-20'} aria-label="Adet" />
+            <input type="number" min={1} value={qty} onChange={(e) => setQty(Math.max(1, Number(e.target.value)))} className={input + ' w-20'} aria-label={t('admin.orderNew.qty')} />
             <button type="button" onClick={addLine} disabled={!selProduct}
               className="flex items-center gap-1 rounded-lg bg-primary px-3 py-2 text-sm font-medium text-primary-text disabled:opacity-40">
-              <Plus size={16} /> Ekle
+              <Plus size={16} /> {t('admin.orderNew.add')}
             </button>
           </div>
         </div>
@@ -132,10 +134,10 @@ export default function AdminOrderCreate() {
             <table className="w-full text-left text-sm">
               <thead className="bg-surface text-text-muted">
                 <tr>
-                  <th className="px-4 py-2 font-medium">Ürün</th>
-                  <th className="px-4 py-2 font-medium">Birim</th>
-                  <th className="px-4 py-2 font-medium">Adet</th>
-                  <th className="px-4 py-2 font-medium">Tutar</th>
+                  <th className="px-4 py-2 font-medium">{t('admin.orderNew.product')}</th>
+                  <th className="px-4 py-2 font-medium">{t('admin.orderNew.unit')}</th>
+                  <th className="px-4 py-2 font-medium">{t('admin.orderNew.qty')}</th>
+                  <th className="px-4 py-2 font-medium">{t('admin.orderNew.amount')}</th>
                   <th className="px-4 py-2" />
                 </tr>
               </thead>
@@ -148,7 +150,7 @@ export default function AdminOrderCreate() {
                     <td className="px-4 py-2 font-medium">{formatPrice(l.unit_price * l.qty)}</td>
                     <td className="px-4 py-2 text-right">
                       <button type="button" onClick={() => setLines((ls) => ls.filter((_, j) => j !== i))}
-                        className="rounded-md p-1.5 text-text-muted hover:text-danger" aria-label="Kaldır">
+                        className="rounded-md p-1.5 text-text-muted hover:text-danger" aria-label={t('admin.orderNew.remove')}>
                         <Trash2 size={15} />
                       </button>
                     </td>
@@ -162,12 +164,12 @@ export default function AdminOrderCreate() {
         {/* Toplam */}
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <label className="mb-1 block text-sm text-text-muted">Kargo ücreti (₺)</label>
+            <label className="mb-1 block text-sm text-text-muted">{t('admin.orderNew.shippingFee')}</label>
             <input type="number" min={0} step="0.01" value={shipping} onChange={(e) => setShipping(e.target.value)} className={input + ' w-40'} />
           </div>
           <div className="text-right">
-            <p className="text-sm text-text-muted">Ara toplam: {formatPrice(subtotal)}</p>
-            <p className="font-display text-xl font-bold text-text">Toplam: {formatPrice(total)}</p>
+            <p className="text-sm text-text-muted">{t('admin.orderNew.subtotal')}: {formatPrice(subtotal)}</p>
+            <p className="font-display text-xl font-bold text-text">{t('admin.orderNew.total')}: {formatPrice(total)}</p>
           </div>
         </div>
 
@@ -176,11 +178,11 @@ export default function AdminOrderCreate() {
         <div className="flex gap-3">
           <button type="submit" disabled={createMutation.isPending}
             className="rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-text transition-transform hover:scale-105 disabled:opacity-50">
-            {createMutation.isPending ? 'Kaydediliyor…' : 'Siparişi Oluştur'}
+            {createMutation.isPending ? t('admin.orderNew.creating') : t('admin.orderNew.create')}
           </button>
           <button type="button" onClick={() => navigate('/admin/siparisler')}
             className="rounded-full border border-border-subtle bg-surface px-6 py-2.5 text-sm text-text">
-            İptal
+            {t('admin.orderNew.cancel')}
           </button>
         </div>
       </form>

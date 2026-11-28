@@ -1,20 +1,23 @@
 import { NavLink, Outlet, useNavigate, Navigate, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { LayoutDashboard, FolderTree, Package, ShoppingCart, Settings as SettingsIcon, LogOut, Store } from 'lucide-react'
 import { useAuth } from '../store/auth'
 import { adminLogout } from '../services/adminApi'
 import { cn } from '../lib/utils'
 import ThemeToggle from '../components/ThemeToggle'
+import LanguageSwitcher from '../components/LanguageSwitcher'
 
 const NAV = [
-  { to: '/admin', label: 'Panel', icon: LayoutDashboard, end: true },
-  { to: '/admin/kategoriler', label: 'Kategoriler', icon: FolderTree, end: false },
-  { to: '/admin/urunler', label: 'Ürünler', icon: Package, end: false },
-  { to: '/admin/siparisler', label: 'Siparişler', icon: ShoppingCart, end: false },
-  { to: '/admin/ayarlar', label: 'Ayarlar', icon: SettingsIcon, end: false },
-]
+  { to: '/admin', key: 'dashboard', icon: LayoutDashboard, end: true },
+  { to: '/admin/kategoriler', key: 'categories', icon: FolderTree, end: false },
+  { to: '/admin/urunler', key: 'products', icon: Package, end: false },
+  { to: '/admin/siparisler', key: 'orders', icon: ShoppingCart, end: false },
+  { to: '/admin/ayarlar', key: 'settings', icon: SettingsIcon, end: false },
+] as const
 
 export default function AdminLayout() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const { user, token, logout } = useAuth()
 
   // Korumalı: token yoksa girişe yönlendir
@@ -38,11 +41,11 @@ export default function AdminLayout() {
           <Link to="/admin" className="font-display text-xl font-bold text-text">
             Te<span className="text-text-muted">Shop</span>
           </Link>
-          <p className="mt-0.5 text-xs text-text-subtle">Yönetim Paneli</p>
+          <p className="mt-0.5 text-xs text-text-subtle">{t('admin.nav.subtitle')}</p>
         </div>
 
         <nav className="flex-1 space-y-1 px-3">
-          {NAV.map(({ to, label, icon: Icon, end }) => (
+          {NAV.map(({ to, key, icon: Icon, end }) => (
             <NavLink
               key={to}
               to={to}
@@ -57,7 +60,7 @@ export default function AdminLayout() {
               }
             >
               <Icon size={18} />
-              {label}
+              {t(`admin.nav.${key}`)}
             </NavLink>
           ))}
         </nav>
@@ -68,7 +71,7 @@ export default function AdminLayout() {
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-text-muted hover:bg-surface-2 hover:text-text"
           >
             <Store size={18} />
-            Siteye Dön
+            {t('admin.nav.backToSite')}
           </a>
         </div>
       </aside>
@@ -79,7 +82,7 @@ export default function AdminLayout() {
         <header className="flex h-16 items-center justify-between border-b border-border-subtle bg-surface px-4 sm:px-6">
           {/* Mobil nav */}
           <nav className="flex gap-1 md:hidden">
-            {NAV.map(({ to, label, icon: Icon, end }) => (
+            {NAV.map(({ to, key, icon: Icon, end }) => (
               <NavLink
                 key={to}
                 to={to}
@@ -90,15 +93,16 @@ export default function AdminLayout() {
                     isActive ? 'bg-surface-2 text-text' : 'text-text-muted',
                   )
                 }
-                aria-label={label}
+                aria-label={t(`admin.nav.${key}`)}
               >
                 <Icon size={20} />
               </NavLink>
             ))}
           </nav>
 
-          <div className="ml-auto flex items-center gap-4">
+          <div className="ml-auto flex items-center gap-3">
             <ThemeToggle />
+            <LanguageSwitcher />
             <span className="hidden text-sm text-text-muted sm:inline">
               {user?.name}
             </span>
@@ -108,7 +112,7 @@ export default function AdminLayout() {
               className="flex items-center gap-2 rounded-lg border border-border-subtle px-3 py-1.5 text-sm text-text-muted hover:text-text focus-visible:outline-2 focus-visible:outline-text"
             >
               <LogOut size={16} />
-              Çıkış
+              {t('admin.nav.logout')}
             </button>
           </div>
         </header>

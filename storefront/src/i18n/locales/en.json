@@ -81,5 +81,56 @@
     "title": "Page not found",
     "desc": "The page you are looking for may have moved or never existed.",
     "back": "Back to Home"
+  },
+  "admin": {
+    "nav": { "dashboard": "Dashboard", "categories": "Categories", "products": "Products", "orders": "Orders", "settings": "Settings", "backToSite": "Back to site", "logout": "Log out", "subtitle": "Admin Panel" },
+    "login": { "subtitle": "Admin sign in", "email": "Email", "password": "Password", "submit": "Sign In", "loading": "Signing in…", "errAuth": "Invalid credentials.", "errForbidden": "This account has no panel access." },
+    "status": { "pending": "Pending", "paid": "Paid", "shipped": "Shipped", "delivered": "Delivered", "cancelled": "Cancelled" },
+    "dash": {
+      "title": "Overview", "totalRevenue": "Total Revenue", "orders": "Orders", "avgOrder": "Avg. Order", "inventoryValue": "Inventory Value",
+      "monthlyRevenue": "Monthly Revenue (last 6 months)", "stockByCategory": "Stock by Category", "orderStatus": "Order Status", "stockStatus": "Stock Status",
+      "inStock": "In stock", "lowStock": "Low", "outOfStock": "Out", "topProducts": "Top Sellers", "noSales": "No sales yet.",
+      "recentOrders": "Recent Orders", "seeAll": "All →", "lowStockTitle": "Low Stock (1–5)", "outOfStockTitle": "Out of Stock",
+      "noLowStock": "No low stock.", "noOutOfStock": "Nothing out of stock.", "soldOut": "Sold out",
+      "product": "Product", "category": "Category", "variant": "Variant", "active": "active", "units": "units"
+    },
+    "orders": {
+      "title": "Orders", "newOrder": "New Order", "allStatuses": "All statuses", "filterStatus": "Filter by status",
+      "no": "Order No", "customer": "Customer", "date": "Date", "total": "Total", "status": "Status", "loading": "Loading…", "none": "No orders."
+    },
+    "orderNew": {
+      "title": "New Order", "customerName": "Customer name", "email": "Email", "addProduct": "Add product", "selectProduct": "Select product…",
+      "variantOpt": "Variant (opt.)", "qty": "Qty", "add": "Add", "product": "Product", "unit": "Unit", "amount": "Amount", "remove": "Remove",
+      "shippingFee": "Shipping fee (₺)", "subtotal": "Subtotal", "total": "Total", "create": "Create Order", "creating": "Saving…", "cancel": "Cancel",
+      "errRequired": "Customer name and email are required.", "errItems": "Add at least one product.", "errFailed": "Could not create order. Check the fields."
+    },
+    "cats": {
+      "title": "Categories", "newCategory": "New Category", "editCategory": "Edit Category", "name": "Name", "parent": "Parent Category",
+      "rootOption": "— Top-level —", "active": "Active", "save": "Save", "saving": "Saving…", "cancel": "Cancel", "close": "Close",
+      "slug": "Slug", "parentCol": "Parent", "productCol": "Products", "statusCol": "Status", "actionCol": "Action", "edit": "Edit", "delete": "Delete",
+      "loading": "Loading…", "none": "No categories.", "activeLabel": "Active", "passiveLabel": "Inactive",
+      "confirmDelete": "Delete category \"{{name}}\"?", "errSave": "Could not save. Check the fields (name required, slug unique)."
+    },
+    "products": {
+      "title": "Products", "search": "Search…", "newProduct": "New Product", "product": "Product", "category": "Category", "price": "Price",
+      "variant": "Variant", "status": "Status", "action": "Action", "loading": "Loading…", "none": "No products.", "active": "Active", "passive": "Inactive",
+      "confirmDelete": "Delete product \"{{name}}\"?", "prev": "Previous", "next": "Next", "edit": "Edit", "delete": "Delete"
+    },
+    "productEdit": {
+      "back": "Back to products", "newTitle": "New Product", "editTitle": "Edit Product", "name": "Product Name", "category": "Category", "selectOption": "— Select —",
+      "activeVisible": "Active (visible on site)", "price": "Price (₺)", "discountPrice": "Discount Price (₺)", "description": "Description",
+      "saving": "Saving…", "saveChanges": "Save Changes", "create": "Create Product", "afterCreateHint": "You can add variants and images after creating the product.",
+      "variantsTitle": "Variants (size / color / stock)", "sku": "SKU", "size": "Size", "color": "Color", "stock": "Stock", "action": "Action",
+      "deleteVariant": "Delete variant", "add": "Add", "imagesTitle": "Images", "uploadImage": "Upload Image", "cover": "Cover", "deleteImage": "Delete image",
+      "noImages": "No images yet.", "errProduct": "Could not save product. Check the fields (category, name, price required).",
+      "errVariant": "Could not add variant (SKU must be unique).", "errImage": "Could not upload image (image only, max 4MB)."
+    },
+    "settings": {
+      "title": "Settings", "profile": "Profile", "name": "Name", "email": "Email", "save": "Save", "saved": "Profile updated.",
+      "profileErr": "Could not update (email may be in use).", "changePassword": "Change Password", "currentPw": "Current password",
+      "newPw": "New password (min 8)", "newPwRepeat": "New password (repeat)", "update": "Update", "pwSaved": "Password updated.",
+      "pwErr": "Current password is wrong or new password is invalid.", "storeInfo": "Store Info", "storeName": "Store name",
+      "contactEmail": "Contact email", "phone": "Phone", "address": "Address", "storeSaved": "Store info updated."
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { ArrowLeft, Plus, Trash2, Star, Upload } from 'lucide-react'
 import {
@@ -35,6 +36,7 @@ export default function AdminProductEdit() {
   const isEdit = !!productId
   const navigate = useNavigate()
   const qc = useQueryClient()
+  const { t } = useTranslation()
 
   const [form, setForm] = useState<ProductInput>(EMPTY_PRODUCT)
   const [variant, setVariant] = useState<VariantInput>(EMPTY_VARIANT)
@@ -81,13 +83,13 @@ export default function AdminProductEdit() {
       if (!isEdit) navigate(`/admin/urunler/${saved.id}/duzenle`)
       else refetchProduct()
     },
-    onError: () => setError('Ürün kaydedilemedi. Alanları kontrol edin (kategori, ad, fiyat gerekli).'),
+    onError: () => setError(t('admin.productEdit.errProduct')),
   })
 
   const addVariant = useMutation({
     mutationFn: () => createVariant(product!.id, variant),
     onSuccess: () => { setVariant(EMPTY_VARIANT); refetchProduct() },
-    onError: () => setError('Varyant eklenemedi (SKU benzersiz olmalı).'),
+    onError: () => setError(t('admin.productEdit.errVariant')),
   })
 
   const changeStock = useMutation({
@@ -104,7 +106,7 @@ export default function AdminProductEdit() {
     mutationFn: ({ file, primary }: { file: File; primary: boolean }) =>
       uploadImage(product!.id, file, { is_primary: primary }),
     onSuccess: refetchProduct,
-    onError: () => setError('Görsel yüklenemedi (yalnız resim, max 4MB).'),
+    onError: () => setError(t('admin.productEdit.errImage')),
   })
 
   const removeImage = useMutation({
@@ -114,12 +116,12 @@ export default function AdminProductEdit() {
 
   return (
     <div className="max-w-4xl">
-      <Seo title={isEdit ? 'Ürün Düzenle' : 'Yeni Ürün'} />
+      <Seo title={isEdit ? t('admin.productEdit.editTitle') : t('admin.productEdit.newTitle')} />
       <Link to="/admin/urunler" className="mb-4 inline-flex items-center gap-1.5 text-sm text-text-muted hover:text-text">
-        <ArrowLeft size={16} /> Ürünlere dön
+        <ArrowLeft size={16} /> {t('admin.productEdit.back')}
       </Link>
       <h1 className="mb-6 font-display text-2xl font-bold text-text">
-        {isEdit ? product?.name ?? 'Ürün Düzenle' : 'Yeni Ürün'}
+        {isEdit ? product?.name ?? t('admin.productEdit.editTitle') : t('admin.productEdit.newTitle')}
       </h1>
 
       {error && (
@@ -133,7 +135,7 @@ export default function AdminProductEdit() {
       >
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
-            <label className="mb-1.5 block text-sm text-text-muted">Ürün Adı *</label>
+            <label className="mb-1.5 block text-sm text-text-muted">{t('admin.productEdit.name')} *</label>
             <input
               required
               value={form.name}
@@ -142,14 +144,14 @@ export default function AdminProductEdit() {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-sm text-text-muted">Kategori *</label>
+            <label className="mb-1.5 block text-sm text-text-muted">{t('admin.productEdit.category')} *</label>
             <select
               required
               value={form.category_id || ''}
               onChange={(e) => setForm({ ...form, category_id: Number(e.target.value) })}
               className="w-full rounded-lg border border-border-subtle bg-bg px-3 py-2 text-text focus:border-text-muted focus:outline-none"
             >
-              <option value="">— Seç —</option>
+              <option value="">{t('admin.productEdit.selectOption')}</option>
               {categories.map((c) => (
                 <option key={c.id} value={c.id}>{c.name}</option>
               ))}
@@ -163,11 +165,11 @@ export default function AdminProductEdit() {
                 onChange={(e) => setForm({ ...form, is_active: e.target.checked })}
                 className="accent-primary"
               />
-              Aktif (sitede görünür)
+              {t('admin.productEdit.activeVisible')}
             </label>
           </div>
           <div>
-            <label className="mb-1.5 block text-sm text-text-muted">Fiyat (₺) *</label>
+            <label className="mb-1.5 block text-sm text-text-muted">{t('admin.productEdit.price')} *</label>
             <input
               type="number" step="0.01" min="0" required
               value={form.base_price || ''}
@@ -176,7 +178,7 @@ export default function AdminProductEdit() {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-sm text-text-muted">İndirimli Fiyat (₺)</label>
+            <label className="mb-1.5 block text-sm text-text-muted">{t('admin.productEdit.discountPrice')}</label>
             <input
               type="number" step="0.01" min="0"
               value={form.discount_price ?? ''}
@@ -185,7 +187,7 @@ export default function AdminProductEdit() {
             />
           </div>
           <div className="sm:col-span-2">
-            <label className="mb-1.5 block text-sm text-text-muted">Açıklama</label>
+            <label className="mb-1.5 block text-sm text-text-muted">{t('admin.productEdit.description')}</label>
             <textarea
               rows={4}
               value={form.description ?? ''}
@@ -200,10 +202,10 @@ export default function AdminProductEdit() {
           disabled={saveProduct.isPending}
           className="rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-text disabled:opacity-50"
         >
-          {saveProduct.isPending ? 'Kaydediliyor…' : isEdit ? 'Değişiklikleri Kaydet' : 'Ürünü Oluştur'}
+          {saveProduct.isPending ? t('admin.productEdit.saving') : isEdit ? t('admin.productEdit.saveChanges') : t('admin.productEdit.create')}
         </button>
         {!isEdit && (
-          <p className="text-xs text-text-subtle">Ürünü oluşturduktan sonra varyant ve görsel ekleyebilirsin.</p>
+          <p className="text-xs text-text-subtle">{t('admin.productEdit.afterCreateHint')}</p>
         )}
       </form>
 
@@ -213,18 +215,18 @@ export default function AdminProductEdit() {
           {/* Varyantlar */}
           <section className="mt-8">
             <h2 className="mb-4 font-display text-lg font-semibold text-text">
-              Varyantlar (beden / renk / stok)
+              {t('admin.productEdit.variantsTitle')}
             </h2>
 
             <div className="overflow-hidden rounded-xl border border-border-subtle">
               <table className="w-full text-left text-sm">
                 <thead className="bg-surface text-text-muted">
                   <tr>
-                    <th className="px-4 py-3 font-medium">SKU</th>
-                    <th className="px-4 py-3 font-medium">Beden</th>
-                    <th className="px-4 py-3 font-medium">Renk</th>
-                    <th className="px-4 py-3 font-medium">Stok</th>
-                    <th className="px-4 py-3 font-medium text-right">İşlem</th>
+                    <th className="px-4 py-3 font-medium">{t('admin.productEdit.sku')}</th>
+                    <th className="px-4 py-3 font-medium">{t('admin.productEdit.size')}</th>
+                    <th className="px-4 py-3 font-medium">{t('admin.productEdit.color')}</th>
+                    <th className="px-4 py-3 font-medium">{t('admin.productEdit.stock')}</th>
+                    <th className="px-4 py-3 font-medium text-right">{t('admin.productEdit.action')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border-subtle bg-bg">
@@ -248,7 +250,7 @@ export default function AdminProductEdit() {
                           type="button"
                           onClick={() => removeVariant.mutate(v.id)}
                           className="rounded-md p-2 text-text-muted hover:text-danger"
-                          aria-label="Varyantı sil"
+                          aria-label={t('admin.productEdit.deleteVariant')}
                         >
                           <Trash2 size={16} />
                         </button>
@@ -292,7 +294,7 @@ export default function AdminProductEdit() {
                         disabled={!variant.sku || addVariant.isPending}
                         className="inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1.5 text-xs font-medium text-primary-text disabled:opacity-40"
                       >
-                        <Plus size={14} /> Ekle
+                        <Plus size={14} /> {t('admin.productEdit.add')}
                       </button>
                     </td>
                   </tr>
@@ -303,11 +305,11 @@ export default function AdminProductEdit() {
 
           {/* Görseller */}
           <section className="mt-8">
-            <h2 className="mb-4 font-display text-lg font-semibold text-text">Görseller</h2>
+            <h2 className="mb-4 font-display text-lg font-semibold text-text">{t('admin.productEdit.imagesTitle')}</h2>
 
             <label className="mb-4 flex w-fit cursor-pointer items-center gap-2 rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm text-text hover:bg-surface-2">
               <Upload size={16} />
-              Görsel Yükle
+              {t('admin.productEdit.uploadImage')}
               <input
                 type="file"
                 accept="image/*"
@@ -326,21 +328,21 @@ export default function AdminProductEdit() {
                   <img src={imageUrl(img.path) ?? ''} alt="" className="h-full w-full object-cover" />
                   {img.is_primary && (
                     <span className="absolute left-2 top-2 flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 text-[10px] font-semibold text-primary-text">
-                      <Star size={10} /> Kapak
+                      <Star size={10} /> {t('admin.productEdit.cover')}
                     </span>
                   )}
                   <button
                     type="button"
                     onClick={() => removeImage.mutate(img.id)}
                     className="absolute right-2 top-2 rounded-full bg-bg/80 p-1.5 text-text-muted hover:text-danger"
-                    aria-label="Görseli sil"
+                    aria-label={t('admin.productEdit.deleteImage')}
                   >
                     <Trash2 size={14} />
                   </button>
                 </div>
               ))}
               {(product.images?.length ?? 0) === 0 && (
-                <p className="col-span-full py-6 text-sm text-text-subtle">Henüz görsel yok.</p>
+                <p className="col-span-full py-6 text-sm text-text-subtle">{t('admin.productEdit.noImages')}</p>
               )}
             </div>
           </section>

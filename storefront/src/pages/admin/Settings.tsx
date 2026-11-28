@@ -15,9 +15,9 @@ import Seo from '../../components/Seo'
 const inputCls =
   'w-full rounded-lg border border-border-subtle bg-bg px-3 py-2 text-sm text-text focus-visible:outline-2 focus-visible:outline-text'
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children, className = '' }: { title: string; children: React.ReactNode; className?: string }) {
   return (
-    <section className="rounded-xl border border-border-subtle bg-surface p-5">
+    <section className={'rounded-xl border border-border-subtle bg-surface p-5 ' + className}>
       <h2 className="mb-4 font-medium text-text">{title}</h2>
       {children}
     </section>
@@ -63,12 +63,13 @@ export default function Settings() {
   const themes: ThemeChoice[] = ['light', 'dark', 'system']
 
   return (
-    <div className="max-w-2xl space-y-6">
-      <Seo title="Ayarlar" />
-      <h1 className="font-display text-2xl font-bold text-text">Ayarlar</h1>
+    <div className="max-w-5xl">
+      <Seo title={t('admin.settings.title')} />
+      <h1 className="mb-6 font-display text-2xl font-bold text-text">{t('admin.settings.title')}</h1>
 
+      <div className="grid gap-5 lg:grid-cols-2 lg:items-start">
       {/* Tema */}
-      <Section title={t('theme.label')}>
+      <Section title={t('theme.label')} className="lg:col-span-2">
         <div className="flex gap-2">
           {themes.map((th) => (
             <button
@@ -89,79 +90,80 @@ export default function Settings() {
       </Section>
 
       {/* Profil */}
-      <Section title="Profil">
+      <Section title={t('admin.settings.profile')}>
         <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); profileM.mutate() }}>
           <div>
-            <label className="mb-1 block text-sm text-text-muted">Ad</label>
+            <label className="mb-1 block text-sm text-text-muted">{t('admin.settings.name')}</label>
             <input value={name} onChange={(e) => setName(e.target.value)} className={inputCls} />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-text-muted">E-posta</label>
+            <label className="mb-1 block text-sm text-text-muted">{t('admin.settings.email')}</label>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={inputCls} />
           </div>
           <div className="flex items-center gap-3">
             <button type="submit" disabled={profileM.isPending}
-              className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-text disabled:opacity-50">Kaydet</button>
-            {profileM.isSuccess && <Note ok>Profil güncellendi.</Note>}
-            {profileM.isError && <Note>Güncellenemedi (e-posta kullanımda olabilir).</Note>}
+              className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-text disabled:opacity-50">{t('admin.settings.save')}</button>
+            {profileM.isSuccess && <Note ok>{t('admin.settings.saved')}</Note>}
+            {profileM.isError && <Note>{t('admin.settings.profileErr')}</Note>}
           </div>
         </form>
       </Section>
 
       {/* Şifre */}
-      <Section title="Şifre Değiştir">
+      <Section title={t('admin.settings.changePassword')}>
         <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); passM.mutate() }}>
           <div>
-            <label className="mb-1 block text-sm text-text-muted">Mevcut şifre</label>
+            <label className="mb-1 block text-sm text-text-muted">{t('admin.settings.currentPw')}</label>
             <input type="password" value={cur} onChange={(e) => setCur(e.target.value)} className={inputCls} />
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-sm text-text-muted">Yeni şifre (min 8)</label>
+              <label className="mb-1 block text-sm text-text-muted">{t('admin.settings.newPw')}</label>
               <input type="password" value={npw} onChange={(e) => setNpw(e.target.value)} className={inputCls} />
             </div>
             <div>
-              <label className="mb-1 block text-sm text-text-muted">Yeni şifre (tekrar)</label>
+              <label className="mb-1 block text-sm text-text-muted">{t('admin.settings.newPwRepeat')}</label>
               <input type="password" value={npw2} onChange={(e) => setNpw2(e.target.value)} className={inputCls} />
             </div>
           </div>
           <div className="flex items-center gap-3">
             <button type="submit" disabled={passM.isPending}
-              className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-text disabled:opacity-50">Güncelle</button>
-            {passM.isSuccess && <Note ok>Şifre güncellendi.</Note>}
-            {passM.isError && <Note>Mevcut şifre hatalı veya yeni şifre geçersiz.</Note>}
+              className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-text disabled:opacity-50">{t('admin.settings.update')}</button>
+            {passM.isSuccess && <Note ok>{t('admin.settings.pwSaved')}</Note>}
+            {passM.isError && <Note>{t('admin.settings.pwErr')}</Note>}
           </div>
         </form>
       </Section>
 
       {/* Mağaza bilgisi */}
-      <Section title="Mağaza Bilgisi">
+      <Section title={t('admin.settings.storeInfo')} className="lg:col-span-2">
         <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); storeM.mutate() }}>
           <div>
-            <label className="mb-1 block text-sm text-text-muted">Mağaza adı</label>
+            <label className="mb-1 block text-sm text-text-muted">{t('admin.settings.storeName')}</label>
             <input value={store.store_name} onChange={(e) => setStore({ ...store, store_name: e.target.value })} className={inputCls} />
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-sm text-text-muted">İletişim e-posta</label>
+              <label className="mb-1 block text-sm text-text-muted">{t('admin.settings.contactEmail')}</label>
               <input type="email" value={store.store_email} onChange={(e) => setStore({ ...store, store_email: e.target.value })} className={inputCls} />
             </div>
             <div>
-              <label className="mb-1 block text-sm text-text-muted">Telefon</label>
+              <label className="mb-1 block text-sm text-text-muted">{t('admin.settings.phone')}</label>
               <input value={store.store_phone} onChange={(e) => setStore({ ...store, store_phone: e.target.value })} className={inputCls} />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-sm text-text-muted">Adres</label>
+            <label className="mb-1 block text-sm text-text-muted">{t('admin.settings.address')}</label>
             <input value={store.store_address} onChange={(e) => setStore({ ...store, store_address: e.target.value })} className={inputCls} />
           </div>
           <div className="flex items-center gap-3">
             <button type="submit" disabled={storeM.isPending}
-              className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-text disabled:opacity-50">Kaydet</button>
-            {storeM.isSuccess && <Note ok>Mağaza bilgisi güncellendi.</Note>}
+              className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-text disabled:opacity-50">{t('admin.settings.save')}</button>
+            {storeM.isSuccess && <Note ok>{t('admin.settings.storeSaved')}</Note>}
           </div>
         </form>
       </Section>
+      </div>
     </div>
   )
 }

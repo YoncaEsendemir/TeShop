@@ -81,5 +81,56 @@
     "title": "Seite nicht gefunden",
     "desc": "Die gesuchte Seite wurde möglicherweise verschoben oder existiert nicht.",
     "back": "Zurück zur Startseite"
+  },
+  "admin": {
+    "nav": { "dashboard": "Übersicht", "categories": "Kategorien", "products": "Produkte", "orders": "Bestellungen", "settings": "Einstellungen", "backToSite": "Zur Website", "logout": "Abmelden", "subtitle": "Verwaltung" },
+    "login": { "subtitle": "Admin-Anmeldung", "email": "E-Mail", "password": "Passwort", "submit": "Anmelden", "loading": "Anmeldung…", "errAuth": "Ungültige Anmeldedaten.", "errForbidden": "Dieses Konto hat keinen Panel-Zugang." },
+    "status": { "pending": "Ausstehend", "paid": "Bezahlt", "shipped": "Versandt", "delivered": "Geliefert", "cancelled": "Storniert" },
+    "dash": {
+      "title": "Übersicht", "totalRevenue": "Gesamtumsatz", "orders": "Bestellungen", "avgOrder": "Ø Bestellung", "inventoryValue": "Lagerwert",
+      "monthlyRevenue": "Monatsumsatz (letzte 6 Monate)", "stockByCategory": "Bestand nach Kategorie", "orderStatus": "Bestellstatus", "stockStatus": "Bestandsstatus",
+      "inStock": "Auf Lager", "lowStock": "Wenig", "outOfStock": "Leer", "topProducts": "Topseller", "noSales": "Noch keine Verkäufe.",
+      "recentOrders": "Letzte Bestellungen", "seeAll": "Alle →", "lowStockTitle": "Wenig Bestand (1–5)", "outOfStockTitle": "Ausverkauft",
+      "noLowStock": "Kein knapper Bestand.", "noOutOfStock": "Nichts ausverkauft.", "soldOut": "Ausverkauft",
+      "product": "Produkt", "category": "Kategorie", "variant": "Variante", "active": "aktiv", "units": "Stk."
+    },
+    "orders": {
+      "title": "Bestellungen", "newOrder": "Neue Bestellung", "allStatuses": "Alle Status", "filterStatus": "Nach Status filtern",
+      "no": "Bestell-Nr.", "customer": "Kunde", "date": "Datum", "total": "Summe", "status": "Status", "loading": "Lädt…", "none": "Keine Bestellungen."
+    },
+    "orderNew": {
+      "title": "Neue Bestellung", "customerName": "Kundenname", "email": "E-Mail", "addProduct": "Produkt hinzufügen", "selectProduct": "Produkt wählen…",
+      "variantOpt": "Variante (opt.)", "qty": "Menge", "add": "Hinzufügen", "product": "Produkt", "unit": "Einzeln", "amount": "Betrag", "remove": "Entfernen",
+      "shippingFee": "Versandkosten (₺)", "subtotal": "Zwischensumme", "total": "Summe", "create": "Bestellung erstellen", "creating": "Speichern…", "cancel": "Abbrechen",
+      "errRequired": "Kundenname und E-Mail sind erforderlich.", "errItems": "Mindestens ein Produkt hinzufügen.", "errFailed": "Bestellung konnte nicht erstellt werden. Felder prüfen."
+    },
+    "cats": {
+      "title": "Kategorien", "newCategory": "Neue Kategorie", "editCategory": "Kategorie bearbeiten", "name": "Name", "parent": "Oberkategorie",
+      "rootOption": "— Hauptkategorie —", "active": "Aktiv", "save": "Speichern", "saving": "Speichern…", "cancel": "Abbrechen", "close": "Schließen",
+      "slug": "Slug", "parentCol": "Übergeordnet", "productCol": "Produkte", "statusCol": "Status", "actionCol": "Aktion", "edit": "Bearbeiten", "delete": "Löschen",
+      "loading": "Lädt…", "none": "Keine Kategorien.", "activeLabel": "Aktiv", "passiveLabel": "Inaktiv",
+      "confirmDelete": "Kategorie \"{{name}}\" löschen?", "errSave": "Speichern fehlgeschlagen. Felder prüfen (Name erforderlich, Slug eindeutig)."
+    },
+    "products": {
+      "title": "Produkte", "search": "Suche…", "newProduct": "Neues Produkt", "product": "Produkt", "category": "Kategorie", "price": "Preis",
+      "variant": "Variante", "status": "Status", "action": "Aktion", "loading": "Lädt…", "none": "Keine Produkte.", "active": "Aktiv", "passive": "Inaktiv",
+      "confirmDelete": "Produkt \"{{name}}\" löschen?", "prev": "Zurück", "next": "Weiter", "edit": "Bearbeiten", "delete": "Löschen"
+    },
+    "productEdit": {
+      "back": "Zu Produkten", "newTitle": "Neues Produkt", "editTitle": "Produkt bearbeiten", "name": "Produktname", "category": "Kategorie", "selectOption": "— Wählen —",
+      "activeVisible": "Aktiv (auf Website sichtbar)", "price": "Preis (₺)", "discountPrice": "Rabattpreis (₺)", "description": "Beschreibung",
+      "saving": "Speichern…", "saveChanges": "Änderungen speichern", "create": "Produkt erstellen", "afterCreateHint": "Nach dem Erstellen können Varianten und Bilder hinzugefügt werden.",
+      "variantsTitle": "Varianten (Größe / Farbe / Bestand)", "sku": "SKU", "size": "Größe", "color": "Farbe", "stock": "Bestand", "action": "Aktion",
+      "deleteVariant": "Variante löschen", "add": "Hinzufügen", "imagesTitle": "Bilder", "uploadImage": "Bild hochladen", "cover": "Titelbild", "deleteImage": "Bild löschen",
+      "noImages": "Noch keine Bilder.", "errProduct": "Produkt konnte nicht gespeichert werden. Felder prüfen (Kategorie, Name, Preis).",
+      "errVariant": "Variante konnte nicht hinzugefügt werden (SKU muss eindeutig sein).", "errImage": "Bild konnte nicht hochgeladen werden (nur Bild, max. 4 MB)."
+    },
+    "settings": {
+      "title": "Einstellungen", "profile": "Profil", "name": "Name", "email": "E-Mail", "save": "Speichern", "saved": "Profil aktualisiert.",
+      "profileErr": "Aktualisierung fehlgeschlagen (E-Mail evtl. vergeben).", "changePassword": "Passwort ändern", "currentPw": "Aktuelles Passwort",
+      "newPw": "Neues Passwort (min. 8)", "newPwRepeat": "Neues Passwort (wdh.)", "update": "Aktualisieren", "pwSaved": "Passwort aktualisiert.",
+      "pwErr": "Aktuelles Passwort falsch oder neues ungültig.", "storeInfo": "Shop-Infos", "storeName": "Shop-Name",
+      "contactEmail": "Kontakt-E-Mail", "phone": "Telefon", "address": "Adresse", "storeSaved": "Shop-Infos aktualisiert."
+    }
   }
 }

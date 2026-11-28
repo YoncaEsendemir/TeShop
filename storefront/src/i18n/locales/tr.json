@@ -81,5 +81,56 @@
     "title": "Sayfa bulunamadı",
     "desc": "Aradığın sayfa taşınmış veya hiç var olmamış olabilir.",
     "back": "Ana Sayfaya Dön"
+  },
+  "admin": {
+    "nav": { "dashboard": "Panel", "categories": "Kategoriler", "products": "Ürünler", "orders": "Siparişler", "settings": "Ayarlar", "backToSite": "Siteye Dön", "logout": "Çıkış", "subtitle": "Yönetim Paneli" },
+    "login": { "subtitle": "Yönetici girişi", "email": "E-posta", "password": "Şifre", "submit": "Giriş Yap", "loading": "Giriş yapılıyor…", "errAuth": "Giriş bilgileri hatalı.", "errForbidden": "Bu hesabın panel yetkisi yok." },
+    "status": { "pending": "Bekliyor", "paid": "Ödendi", "shipped": "Kargoda", "delivered": "Teslim edildi", "cancelled": "İptal" },
+    "dash": {
+      "title": "Genel Bakış", "totalRevenue": "Toplam Gelir", "orders": "Sipariş", "avgOrder": "Ort. Sepet", "inventoryValue": "Envanter Değeri",
+      "monthlyRevenue": "Aylık Gelir (son 6 ay)", "stockByCategory": "Kategoriye Göre Stok", "orderStatus": "Sipariş Durumu", "stockStatus": "Stok Durumu",
+      "inStock": "Stokta", "lowStock": "Az kalan", "outOfStock": "Tükenen", "topProducts": "Çok Satanlar", "noSales": "Henüz satış yok.",
+      "recentOrders": "Son Siparişler", "seeAll": "Tümü →", "lowStockTitle": "Az Kalan Stok (1–5)", "outOfStockTitle": "Tükenen Stok",
+      "noLowStock": "Az kalan stok yok.", "noOutOfStock": "Tükenen ürün yok.", "soldOut": "Tükendi",
+      "product": "Ürün", "category": "Kategori", "variant": "Varyant", "active": "aktif", "units": "adet"
+    },
+    "orders": {
+      "title": "Siparişler", "newOrder": "Yeni Sipariş", "allStatuses": "Tüm durumlar", "filterStatus": "Duruma göre filtrele",
+      "no": "Sipariş No", "customer": "Müşteri", "date": "Tarih", "total": "Toplam", "status": "Durum", "loading": "Yükleniyor…", "none": "Sipariş yok."
+    },
+    "orderNew": {
+      "title": "Yeni Sipariş", "customerName": "Müşteri adı", "email": "E-posta", "addProduct": "Ürün ekle", "selectProduct": "Ürün seç…",
+      "variantOpt": "Varyant (ops.)", "qty": "Adet", "add": "Ekle", "product": "Ürün", "unit": "Birim", "amount": "Tutar", "remove": "Kaldır",
+      "shippingFee": "Kargo ücreti (₺)", "subtotal": "Ara toplam", "total": "Toplam", "create": "Siparişi Oluştur", "creating": "Kaydediliyor…", "cancel": "İptal",
+      "errRequired": "Müşteri adı ve e-posta zorunlu.", "errItems": "En az bir ürün ekleyin.", "errFailed": "Sipariş oluşturulamadı. Alanları kontrol edin."
+    },
+    "cats": {
+      "title": "Kategoriler", "newCategory": "Yeni Kategori", "editCategory": "Kategori Düzenle", "name": "Ad", "parent": "Üst Kategori",
+      "rootOption": "— Ana kategori —", "active": "Aktif", "save": "Kaydet", "saving": "Kaydediliyor…", "cancel": "Vazgeç", "close": "Kapat",
+      "slug": "Slug", "parentCol": "Üst", "productCol": "Ürün", "statusCol": "Durum", "actionCol": "İşlem", "edit": "Düzenle", "delete": "Sil",
+      "loading": "Yükleniyor…", "none": "Kategori yok.", "activeLabel": "Aktif", "passiveLabel": "Pasif",
+      "confirmDelete": "\"{{name}}\" kategorisi silinsin mi?", "errSave": "Kaydedilemedi. Alanları kontrol edin (ad gerekli, slug benzersiz)."
+    },
+    "products": {
+      "title": "Ürünler", "search": "Ara…", "newProduct": "Yeni Ürün", "product": "Ürün", "category": "Kategori", "price": "Fiyat",
+      "variant": "Varyant", "status": "Durum", "action": "İşlem", "loading": "Yükleniyor…", "none": "Ürün yok.", "active": "Aktif", "passive": "Pasif",
+      "confirmDelete": "\"{{name}}\" ürünü silinsin mi?", "prev": "Önceki", "next": "Sonraki", "edit": "Düzenle", "delete": "Sil"
+    },
+    "productEdit": {
+      "back": "Ürünlere dön", "newTitle": "Yeni Ürün", "editTitle": "Ürün Düzenle", "name": "Ürün Adı", "category": "Kategori", "selectOption": "— Seç —",
+      "activeVisible": "Aktif (sitede görünür)", "price": "Fiyat (₺)", "discountPrice": "İndirimli Fiyat (₺)", "description": "Açıklama",
+      "saving": "Kaydediliyor…", "saveChanges": "Değişiklikleri Kaydet", "create": "Ürünü Oluştur", "afterCreateHint": "Ürünü oluşturduktan sonra varyant ve görsel ekleyebilirsin.",
+      "variantsTitle": "Varyantlar (beden / renk / stok)", "sku": "SKU", "size": "Beden", "color": "Renk", "stock": "Stok", "action": "İşlem",
+      "deleteVariant": "Varyantı sil", "add": "Ekle", "imagesTitle": "Görseller", "uploadImage": "Görsel Yükle", "cover": "Kapak", "deleteImage": "Görseli sil",
+      "noImages": "Henüz görsel yok.", "errProduct": "Ürün kaydedilemedi. Alanları kontrol edin (kategori, ad, fiyat gerekli).",
+      "errVariant": "Varyant eklenemedi (SKU benzersiz olmalı).", "errImage": "Görsel yüklenemedi (yalnız resim, max 4MB)."
+    },
+    "settings": {
+      "title": "Ayarlar", "profile": "Profil", "name": "Ad", "email": "E-posta", "save": "Kaydet", "saved": "Profil güncellendi.",
+      "profileErr": "Güncellenemedi (e-posta kullanımda olabilir).", "changePassword": "Şifre Değiştir", "currentPw": "Mevcut şifre",
+      "newPw": "Yeni şifre (min 8)", "newPwRepeat": "Yeni şifre (tekrar)", "update": "Güncelle", "pwSaved": "Şifre güncellendi.",
+      "pwErr": "Mevcut şifre hatalı veya yeni şifre geçersiz.", "storeInfo": "Mağaza Bilgisi", "storeName": "Mağaza adı",
+      "contactEmail": "İletişim e-posta", "phone": "Telefon", "address": "Adres", "storeSaved": "Mağaza bilgisi güncellendi."
+    }
   }
 }

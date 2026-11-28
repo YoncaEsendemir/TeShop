@@ -7,11 +7,11 @@ export interface BarDatum {
 
 /**
  * Basit dikey bar grafik — HTML/CSS (SVG distorsiyonu yok). currentColor ile
- * temalı; etiketler kırpılır, tam değer tooltip'te (title).
+ * temalı; taban çizgisi + altta net etiketler, tam değer tooltip'te (title).
  */
 export default function BarChart({
   data,
-  height = 160,
+  height = 150,
   formatValue = (v: number) => String(v),
   title,
 }: {
@@ -25,22 +25,34 @@ export default function BarChart({
   }
 
   const max = niceMax(data.map((d) => d.value)) || 1
-  const barArea = height - 22 // etiket için altta pay
 
   return (
-    <div className="flex items-end gap-1.5 text-text" style={{ height }} role="img" aria-label={title}>
-      {data.map((d, i) => (
-        <div key={i} className="flex min-w-0 flex-1 flex-col items-center justify-end gap-1">
-          <div
-            className="w-full max-w-10 rounded-t bg-current opacity-85"
-            style={{ height: Math.max((d.value / max) * barArea, 2) }}
-            title={`${d.label}: ${formatValue(d.value)}`}
-          />
-          <span className="w-full truncate text-center text-[10px] text-text-subtle" title={d.label}>
+    <div role="img" aria-label={title}>
+      <div
+        className="flex items-end gap-2 border-b border-border-subtle text-text"
+        style={{ height }}
+      >
+        {data.map((d, i) => (
+          <div key={i} className="flex min-w-0 flex-1 justify-center">
+            <div
+              className="w-full max-w-12 rounded-t bg-current opacity-80 transition-opacity hover:opacity-100"
+              style={{ height: Math.max((d.value / max) * (height - 4), 2) }}
+              title={`${d.label}: ${formatValue(d.value)}`}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="mt-2 flex gap-2">
+        {data.map((d, i) => (
+          <span
+            key={i}
+            className="min-w-0 flex-1 truncate text-center text-[11px] text-text-muted"
+            title={d.label}
+          >
             {d.label}
           </span>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }

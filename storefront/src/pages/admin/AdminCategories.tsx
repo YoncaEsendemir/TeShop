@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Pencil, Plus, Trash2, X } from 'lucide-react'
 import {
@@ -15,6 +16,7 @@ const EMPTY: CategoryInput = { name: '', parent_id: null, is_active: true }
 
 export default function AdminCategories() {
   const qc = useQueryClient()
+  const { t } = useTranslation()
   const [editing, setEditing] = useState<Category | null>(null)
   const [form, setForm] = useState<CategoryInput>(EMPTY)
   const [showForm, setShowForm] = useState(false)
@@ -37,7 +39,7 @@ export default function AdminCategories() {
       invalidate()
       closeForm()
     },
-    onError: () => setError('Kaydedilemedi. Alanları kontrol edin (ad gerekli, slug benzersiz).'),
+    onError: () => setError(t('admin.cats.errSave')),
   })
 
   const deleteMutation = useMutation({
@@ -73,15 +75,15 @@ export default function AdminCategories() {
 
   return (
     <div>
-      <Seo title="Kategoriler" />
+      <Seo title={t('admin.cats.title')} />
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="font-display text-2xl font-bold text-text">Kategoriler</h1>
+        <h1 className="font-display text-2xl font-bold text-text">{t('admin.cats.title')}</h1>
         <button
           type="button"
           onClick={openCreate}
           className="flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-text transition-transform hover:scale-105"
         >
-          <Plus size={16} /> Yeni Kategori
+          <Plus size={16} /> {t('admin.cats.newCategory')}
         </button>
       </div>
 
@@ -93,9 +95,9 @@ export default function AdminCategories() {
         >
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-medium text-text">
-              {editing ? 'Kategori Düzenle' : 'Yeni Kategori'}
+              {editing ? t('admin.cats.editCategory') : t('admin.cats.newCategory')}
             </h2>
-            <button type="button" onClick={closeForm} aria-label="Kapat" className="text-text-muted hover:text-text">
+            <button type="button" onClick={closeForm} aria-label={t('admin.cats.close')} className="text-text-muted hover:text-text">
               <X size={18} />
             </button>
           </div>
@@ -108,7 +110,7 @@ export default function AdminCategories() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1.5 block text-sm text-text-muted">Ad *</label>
+              <label className="mb-1.5 block text-sm text-text-muted">{t('admin.cats.name')} *</label>
               <input
                 required
                 value={form.name}
@@ -117,7 +119,7 @@ export default function AdminCategories() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm text-text-muted">Üst Kategori</label>
+              <label className="mb-1.5 block text-sm text-text-muted">{t('admin.cats.parent')}</label>
               <select
                 value={form.parent_id ?? ''}
                 onChange={(e) =>
@@ -125,7 +127,7 @@ export default function AdminCategories() {
                 }
                 className="w-full rounded-lg border border-border-subtle bg-bg px-3 py-2 text-text focus:border-text-muted focus:outline-none"
               >
-                <option value="">— Ana kategori —</option>
+                <option value="">{t('admin.cats.rootOption')}</option>
                 {categories
                   .filter((c) => c.id !== editing?.id)
                   .map((c) => (
@@ -142,7 +144,7 @@ export default function AdminCategories() {
               onChange={(e) => setForm({ ...form, is_active: e.target.checked })}
               className="accent-primary"
             />
-            Aktif
+            {t('admin.cats.active')}
           </label>
 
           <div className="mt-5 flex gap-2">
@@ -151,14 +153,14 @@ export default function AdminCategories() {
               disabled={saveMutation.isPending}
               className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-text disabled:opacity-50"
             >
-              {saveMutation.isPending ? 'Kaydediliyor…' : 'Kaydet'}
+              {saveMutation.isPending ? t('admin.cats.saving') : t('admin.cats.save')}
             </button>
             <button
               type="button"
               onClick={closeForm}
               className="rounded-full border border-border-subtle px-5 py-2 text-sm text-text-muted hover:text-text"
             >
-              Vazgeç
+              {t('admin.cats.cancel')}
             </button>
           </div>
         </form>
@@ -169,19 +171,19 @@ export default function AdminCategories() {
         <table className="w-full text-left text-sm">
           <thead className="bg-surface text-text-muted">
             <tr>
-              <th className="px-4 py-3 font-medium">Ad</th>
-              <th className="px-4 py-3 font-medium">Slug</th>
-              <th className="px-4 py-3 font-medium">Üst</th>
-              <th className="px-4 py-3 font-medium">Ürün</th>
-              <th className="px-4 py-3 font-medium">Durum</th>
-              <th className="px-4 py-3 font-medium text-right">İşlem</th>
+              <th className="px-4 py-3 font-medium">{t('admin.cats.name')}</th>
+              <th className="px-4 py-3 font-medium">{t('admin.cats.slug')}</th>
+              <th className="px-4 py-3 font-medium">{t('admin.cats.parentCol')}</th>
+              <th className="px-4 py-3 font-medium">{t('admin.cats.productCol')}</th>
+              <th className="px-4 py-3 font-medium">{t('admin.cats.statusCol')}</th>
+              <th className="px-4 py-3 font-medium text-right">{t('admin.cats.actionCol')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border-subtle bg-bg">
             {isLoading ? (
-              <tr><td colSpan={6} className="px-4 py-8 text-center text-text-muted">Yükleniyor…</td></tr>
+              <tr><td colSpan={6} className="px-4 py-8 text-center text-text-muted">{t('admin.cats.loading')}</td></tr>
             ) : categories.length === 0 ? (
-              <tr><td colSpan={6} className="px-4 py-8 text-center text-text-muted">Kategori yok.</td></tr>
+              <tr><td colSpan={6} className="px-4 py-8 text-center text-text-muted">{t('admin.cats.none')}</td></tr>
             ) : (
               categories.map((c) => {
                 const parent = categories.find((p) => p.id === c.parent_id)
@@ -193,7 +195,7 @@ export default function AdminCategories() {
                     <td className="px-4 py-3 text-text-muted">{c.products_count ?? 0}</td>
                     <td className="px-4 py-3">
                       <span className={c.is_active ? 'text-success' : 'text-text-subtle'}>
-                        {c.is_active ? 'Aktif' : 'Pasif'}
+                        {c.is_active ? t('admin.cats.activeLabel') : t('admin.cats.passiveLabel')}
                       </span>
                     </td>
                     <td className="px-4 py-3">
@@ -202,17 +204,17 @@ export default function AdminCategories() {
                           type="button"
                           onClick={() => openEdit(c)}
                           className="rounded-md p-2 text-text-muted hover:bg-surface hover:text-text"
-                          aria-label="Düzenle"
+                          aria-label={t('admin.cats.edit')}
                         >
                           <Pencil size={16} />
                         </button>
                         <button
                           type="button"
                           onClick={() => {
-                            if (confirm(`"${c.name}" kategorisi silinsin mi?`)) deleteMutation.mutate(c.id)
+                            if (confirm(t('admin.cats.confirmDelete', { name: c.name }))) deleteMutation.mutate(c.id)
                           }}
                           className="rounded-md p-2 text-text-muted hover:bg-surface hover:text-danger"
-                          aria-label="Sil"
+                          aria-label={t('admin.cats.delete')}
                         >
                           <Trash2 size={16} />
                         </button>
