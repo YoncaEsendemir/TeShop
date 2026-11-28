@@ -20,7 +20,9 @@
     "wishlist": "Favorilerim",
     "addrTitle": "Başlık (Ev/İş)", "addrName": "Ad Soyad", "addrPhone": "Telefon", "addrLine": "Adres",
     "addrCity": "Şehir", "addrPostal": "Posta Kodu", "addrAdd": "Adres Ekle", "addrSave": "Kaydet",
-    "addrNone": "Kayıtlı adres yok.", "addrDelete": "Sil", "ordersNone": "Henüz siparişin yok.", "wishlistNone": "Favori listen boş."
+    "addrNone": "Kayıtlı adres yok.", "addrDelete": "Sil", "ordersNone": "Henüz siparişin yok.", "wishlistNone": "Favori listen boş.",
+    "checkoutTitle": "Siparişi Tamamla", "placeOrder": "Siparişi Ver", "shippingLabel": "Kargo", "emptyCart": "Sepetin boş.",
+    "checkoutVerify": "Sipariş vermek için e-postanı doğrulaman gerekiyor.", "checkoutErr": "Sipariş oluşturulamadı."
   },
   "nav": { "all": "Tüm Ürünler", "search": "Ara…", "cartLabel": "Sepet ({{count}} ürün)" },
   "home": {

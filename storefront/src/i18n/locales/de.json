@@ -20,7 +20,9 @@
     "wishlist": "Favoriten",
     "addrTitle": "Bezeichnung (Zuhause/Arbeit)", "addrName": "Vollständiger Name", "addrPhone": "Telefon", "addrLine": "Adresse",
     "addrCity": "Stadt", "addrPostal": "PLZ", "addrAdd": "Adresse hinzufügen", "addrSave": "Speichern",
-    "addrNone": "Keine gespeicherte Adresse.", "addrDelete": "Löschen", "ordersNone": "Noch keine Bestellungen.", "wishlistNone": "Deine Favoritenliste ist leer."
+    "addrNone": "Keine gespeicherte Adresse.", "addrDelete": "Löschen", "ordersNone": "Noch keine Bestellungen.", "wishlistNone": "Deine Favoritenliste ist leer.",
+    "checkoutTitle": "Zur Kasse", "placeOrder": "Bestellung aufgeben", "shippingLabel": "Versand", "emptyCart": "Dein Warenkorb ist leer.",
+    "checkoutVerify": "Du musst deine E-Mail bestätigen, um zu bestellen.", "checkoutErr": "Bestellung konnte nicht erstellt werden."
   },
   "nav": { "all": "Alle Produkte", "search": "Suche…", "cartLabel": "Warenkorb ({{count}} Artikel)" },
   "home": {

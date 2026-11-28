@@ -20,7 +20,9 @@
     "wishlist": "Favorites",
     "addrTitle": "Label (Home/Work)", "addrName": "Full name", "addrPhone": "Phone", "addrLine": "Address",
     "addrCity": "City", "addrPostal": "Postal code", "addrAdd": "Add Address", "addrSave": "Save",
-    "addrNone": "No saved address.", "addrDelete": "Delete", "ordersNone": "No orders yet.", "wishlistNone": "Your favorites list is empty."
+    "addrNone": "No saved address.", "addrDelete": "Delete", "ordersNone": "No orders yet.", "wishlistNone": "Your favorites list is empty.",
+    "checkoutTitle": "Checkout", "placeOrder": "Place Order", "shippingLabel": "Shipping", "emptyCart": "Your cart is empty.",
+    "checkoutVerify": "You need to verify your email to place an order.", "checkoutErr": "Could not create order."
   },
   "nav": { "all": "All Products", "search": "Search…", "cartLabel": "Cart ({{count}} items)" },
   "home": {

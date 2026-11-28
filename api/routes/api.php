@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\Customer\AddressController as CustomerAddressController;
 use App\Http\Controllers\Api\V1\Customer\AuthController as CustomerAuthController;
+use App\Http\Controllers\Api\V1\Customer\CheckoutController;
 use App\Http\Controllers\Api\V1\Customer\EmailVerificationController;
 use App\Http\Controllers\Api\V1\Customer\OrderController as CustomerOrderController;
 use App\Http\Controllers\Api\V1\Customer\WishlistController as CustomerWishlistController;
@@ -60,6 +61,9 @@ Route::prefix('v1')->middleware('locale')->group(function () {
         // Favoriler
         Route::get('/wishlist', [CustomerWishlistController::class, 'index']);
         Route::post('/wishlist/toggle', [CustomerWishlistController::class, 'toggle']);
+
+        // Checkout — yalnız e-postası doğrulanmış kullanıcı
+        Route::post('/checkout', [CheckoutController::class, 'store'])->middleware('verified');
     });
 
     /*

@@ -114,4 +114,17 @@ export async function toggleWishlist(productId: number): Promise<boolean> {
   return data.in_wishlist
 }
 
+// --- Checkout ---
+export interface CheckoutInput {
+  customer_name: string
+  customer_email: string
+  address: string
+  items: { product_id: number; variant_id: number; qty: number }[]
+}
+
+export async function checkout(input: CheckoutInput): Promise<MyOrder> {
+  const { data } = await customerApi.post<{ data: MyOrder }>('/checkout', input)
+  return data.data
+}
+
 export default customerApi

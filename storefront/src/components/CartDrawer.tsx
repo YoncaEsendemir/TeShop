@@ -131,15 +131,13 @@ export default function CartDrawer() {
                       {formatPrice(subtotal)}
                     </span>
                   </div>
-                  <button
-                    type="button"
-                    className="w-full rounded-full bg-primary py-3 text-sm font-medium text-primary-text transition-transform hover:scale-[1.02] active:scale-95"
+                  <Link
+                    to="/odeme"
+                    onClick={closeCart}
+                    className="block w-full rounded-full bg-primary py-3 text-center text-sm font-medium text-primary-text transition-transform hover:scale-[1.02] active:scale-95"
                   >
                     {t('cart.checkout')}
-                  </button>
-                  <p className="mt-2 text-center text-xs text-text-subtle">
-                    {t('cart.checkoutNote')}
-                  </p>
+                  </Link>
                 </div>
               </>
             )}
