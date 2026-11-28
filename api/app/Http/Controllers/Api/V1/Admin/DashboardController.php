@@ -20,7 +20,8 @@ class DashboardController extends Controller
         $revenueCount = Order::revenue()->count();
         $avgOrderValue = $revenueCount > 0 ? round($totalRevenue / $revenueCount, 2) : 0;
 
-        // Son 6 ay gelir
+        // Son 6 ay gelir (ay etiketleri Türkçe)
+        $trMonths = ['', 'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
         $revenueByMonth = [];
         for ($i = 5; $i >= 0; $i--) {
             $m = Carbon::now()->startOfMonth()->subMonths($i);
@@ -30,7 +31,7 @@ class DashboardController extends Controller
                 ->sum('total');
             $revenueByMonth[] = [
                 'month' => $m->format('Y-m'),
-                'label' => $m->format('M'),
+                'label' => $trMonths[$m->month],
                 'total' => round((float) $total, 2),
             ];
         }
@@ -69,10 +70,10 @@ class DashboardController extends Controller
             ->join('products', 'products.id', '=', 'product_variants.product_id')
             ->sum(DB::raw('product_variants.stock * COALESCE(product_variants.price, products.discount_price, products.base_price)')), 2);
 
-        // Kategoriye göre stok
-        $stockByCategory = Category::with('products.variants')->get()
+        // Kategoriye göre stok (alt kategoriye ana kategori adı eklenir: "Kadın Üst Giyim")
+        $stockByCategory = Category::with(['products.variants', 'parent'])->get()
             ->map(fn ($c) => [
-                'name' => $c->name,
+                'name' => $c->parent ? $c->parent->name.' '.$c->name : $c->name,
                 'stock' => (int) $c->products->sum(fn ($p) => $p->variants->sum('stock')),
             ])
             ->filter(fn ($x) => $x['stock'] > 0)

@@ -106,9 +106,9 @@ Route::prefix('v1')->middleware('locale')->group(function () {
             Route::get('orders/{order}', [AdminOrderController::class, 'show']);
             Route::patch('orders/{order}/status', [AdminOrderController::class, 'updateStatus']);
 
-            // Ayarlar: profil / şifre / mağaza bilgisi
-            Route::put('profile', [AdminProfileController::class, 'update']);
-            Route::put('password', [AdminPasswordController::class, 'update']);
+            // Ayarlar: profil / şifre / mağaza bilgisi (şifre denemelerine hız sınırı)
+            Route::put('profile', [AdminProfileController::class, 'update'])->middleware('throttle:10,1');
+            Route::put('password', [AdminPasswordController::class, 'update'])->middleware('throttle:6,1');
             Route::get('settings', [SettingController::class, 'index']);
             Route::put('settings', [SettingController::class, 'update']);
         });
