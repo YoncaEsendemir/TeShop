@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
@@ -10,6 +10,7 @@ import {
   createAddress,
   deleteAddress,
   fetchMyOrders,
+  fetchMe,
   type AddressInput,
 } from '../services/customerApi'
 import { useCustomerAuth } from '../store/customerAuth'
@@ -23,8 +24,12 @@ export default function Account() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const qc = useQueryClient()
-  const { user, token, logout } = useCustomerAuth()
+  const { user, token, logout, setUser } = useCustomerAuth()
   const [sent, setSent] = useState(false)
+
+  // Doğrulama durumu güncel olsun diye /me'den tazele
+  const { data: me } = useQuery({ queryKey: ['customer', 'me'], queryFn: fetchMe, enabled: !!token })
+  useEffect(() => { if (me) setUser(me) }, [me]) // eslint-disable-line react-hooks/exhaustive-deps
   const [form, setForm] = useState<AddressInput>(EMPTY)
   const [showForm, setShowForm] = useState(false)
 

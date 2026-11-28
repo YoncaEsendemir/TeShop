@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { checkout, fetchAddresses, resendVerification } from '../services/customerApi'
+import { checkout, fetchAddresses, resendVerification, fetchMe } from '../services/customerApi'
 import { useCustomerAuth } from '../store/customerAuth'
 import { useCart } from '../store/cart'
 import { formatPrice } from '../lib/utils'
@@ -13,7 +13,10 @@ const inp = 'w-full rounded-lg border border-border-subtle bg-bg px-3 py-2 text-
 export default function Checkout() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { user, token } = useCustomerAuth()
+  const { user, token, setUser } = useCustomerAuth()
+  // Doğrulama durumu güncel olsun diye açılışta /me'den tazele
+  const { data: me } = useQuery({ queryKey: ['customer', 'me'], queryFn: fetchMe, enabled: !!token })
+  useEffect(() => { if (me) setUser(me) }, [me]) // eslint-disable-line react-hooks/exhaustive-deps
   const items = useCart((s) => s.items)
   const subtotal = useCart((s) => s.subtotal())
   const clear = useCart((s) => s.clear)
