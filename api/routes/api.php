@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\SettingController;
+use App\Http\Controllers\Api\V1\Customer\AuthController as CustomerAuthController;
+use App\Http\Controllers\Api\V1\Customer\EmailVerificationController;
 use App\Http\Controllers\Api\V1\Admin\PasswordController as AdminPasswordController;
 use App\Http\Controllers\Api\V1\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Api\V1\Admin\AuthController as AdminAuthController;
@@ -24,6 +26,24 @@ Route::prefix('v1')->middleware('locale')->group(function () {
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{slug}', [ProductController::class, 'show']);
     Route::get('/settings', [SettingController::class, 'show']);
+
+    /*
+    |----------------------------------------------------------------------
+    | Müşteri (storefront hesabı)
+    |----------------------------------------------------------------------
+    */
+    Route::post('/register', [CustomerAuthController::class, 'register'])->middleware('throttle:10,1');
+    Route::post('/login', [CustomerAuthController::class, 'login'])->middleware('throttle:10,1');
+    // İmzalı doğrulama linki (Laravel VerifyEmail bu route adını kullanır)
+    Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+        ->middleware('signed')->name('verification.verify');
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/logout', [CustomerAuthController::class, 'logout']);
+        Route::get('/me', [CustomerAuthController::class, 'me']);
+        Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])
+            ->middleware('throttle:6,1');
+    });
 
     /*
     |----------------------------------------------------------------------
